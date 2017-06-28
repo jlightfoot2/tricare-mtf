@@ -1,7 +1,7 @@
 {
-  "name": "navy-mtf",
+  "name": "tricare-mtf",
   "version": "1.0.0",
-  "description": "Navy Medicine",
+  "description": "Tricare MHS",
   "main": "index.ts",
   "author": "T2",
   "license": "MIT",

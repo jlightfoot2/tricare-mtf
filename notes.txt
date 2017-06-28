@@ -20,6 +20,11 @@ hotlines
 Missing Images
 # commands
 images
-'./f12Beaufort.png'.
+
 icons
-'./f21EmbNMCPortsmouthVA.png'
+'./f40MEDDAC_FtRileycrest.png'.
+'./f666509F359-7AD2-4A02-82F429EBC6A5879Dtmp-198.png'
+'/f112DCE691F2-38D6-410E-9646A9E4AD559C82tmp-180.png'
+'./f121Moncriefcrest.png',
+'f122BAMCcrest.png',
+'f207IRAHCcrest.png'
