@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
+import {CommandInterface} from '../res/data/commands';
 import CommandHospitalsComponent from '../components/CommandsList';
-import {ProductInterface} from '../res/data/products';
-import {addProductFavorites} from '../actions';
+
 import {withRouter} from 'react-router-dom';
 
 const stateToProps = (state,ownProps) => {
@@ -11,16 +11,8 @@ const stateToProps = (state,ownProps) => {
 }
 const dispatchToProps = (dispatch,ownProps) => {
   return {
-    addFavorite: (product: ProductInterface) => {
-      dispatch(addProductFavorites(product.id));
-    },
-    
-    itemClick: (product: ProductInterface) => {
-        console.log('pushing ' + '/commands/' + product.id);
-        console.log(ownProps);
-        //Just a stub for now
-        //TODO waiting for react-router-redux to be compatiable with react-redux v4
-       
+    itemClick: (product: CommandInterface) =>{
+      ownProps.history.push('/commands/' + product.id);
     }
   }
 }

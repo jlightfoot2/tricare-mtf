@@ -1,4 +1,5 @@
 import {defaultCommands, defaultCommandIds} from '../res/data/commands';
+import {defaultLeaders, defaultLeaderIds} from '../res/data/leadership';
 import {
   WINDOW_RESIZE,
   SET_PAGE_TITLE
@@ -12,6 +13,14 @@ const hospitals = (state = defaultCommands, action) => {
 }
 
 const hospitalIds = (state = defaultCommandIds, action) => {
+  return state;
+}
+
+const leaders = (state = defaultLeaders, action) => {
+  return state;
+}
+
+const leaderIds = (state = defaultLeaderIds, action) => {
   return state;
 }
 
@@ -39,6 +48,8 @@ const view = (state = defaultView, action) => {
 const reducer = combineReducers({
   hospitals,
   hospitalIds,
+  leaders,
+  leaderIds,
   view
 });
 

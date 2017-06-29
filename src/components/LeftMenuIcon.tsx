@@ -15,6 +15,13 @@ const LeftMenu = () => {
     >
       <MenuItem containerElement={<Link to="/" />} primaryText="Home" />
       <MenuItem containerElement={<Link to="/commands" />} primaryText="Locations" />
+      
+
+      <MenuItem containerElement={<Link to="/army" />} primaryText="Army" />
+      <MenuItem containerElement={<Link to="/army/leaders" />} primaryText="Army Leaders" />
+      <MenuItem containerElement={<Link to="/navy" />} primaryText="Navy" />
+      <MenuItem containerElement={<Link to="/air-force" />} primaryText="Air Force" />
+
     </IconMenu>
     );
 }

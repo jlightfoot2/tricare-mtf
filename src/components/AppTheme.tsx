@@ -1,8 +1,15 @@
 import * as React from 'react';
 import AppBar from '../containers/AppBar';
 //import ProductsEdit from '../containers/ProductsEdit';
+
+import SiteAirForce from './SiteAirForce';
+import SiteArmy from './SiteArmy';
+import SiteNavy from './SiteNavy';
+
 import HomePage from './HomePage';
 import CommandsPage from './CommandsPage';
+import LeadershipPage from './LeadersPage';
+import LeadershipDetailsPage from '../containers/LeadershipDetailsPage';
 import CommandDetailsPage from '../containers/CommandDetailsPage';
 import LeftMenuIcon from './LeftMenuIcon';
 import { Route } from 'react-router-dom';
@@ -110,8 +117,10 @@ class App extends React.Component<Props, State>{
       
     }
   }
-  renderRouteComponent = (Component) => {
-    return () => <Page appPage={this.getAppPageObject()}><Component  /></Page>;
+  renderRouteComponent = (Component,extraProps = {}) => {
+    return (routeProps) => {
+      return <Page {...routeProps} {...extraProps} appPage={this.getAppPageObject()}><Component  /></Page>;
+    }
   }
   
   render(){
@@ -123,7 +132,18 @@ class App extends React.Component<Props, State>{
                 <Route exact path="/" render={this.renderRouteComponent(HomePage)} />
                 <Route exact path="/commands" render={this.renderRouteComponent(CommandsPage)} />
                 <Route exact path="/commands/:id" render={this.renderRouteComponent(CommandDetailsPage)} />
+                
+                <Route exact path="/leaders" render={this.renderRouteComponent(LeadershipPage)} />
 
+                <Route path="/army" render={this.renderRouteComponent(SiteArmy)} />
+                <Route path="/navy" render={this.renderRouteComponent(SiteNavy)} />
+                <Route path="/air-force" render={this.renderRouteComponent(SiteAirForce)} />
+
+                <Route exact path="/leaders/army" render={this.renderRouteComponent(LeadershipPage,{service_id: 1})} />
+                <Route exact path="/leaders/navy" render={this.renderRouteComponent(LeadershipPage,{service_id: 2})} />
+                <Route exact path="/leaders/air-force" render={this.renderRouteComponent(LeadershipPage,{service_id: 3})} />
+
+                <Route exact path="/leaders/:id" render={this.renderRouteComponent(LeadershipDetailsPage)} />
               </div>
             </div>
           </MuiThemeProvider>;

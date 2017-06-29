@@ -17,14 +17,11 @@ export default class CommandHospitals extends React.Component<Props, State>{
 
   constructor(props,context){
     super(props);
-    console.log(props);
   }
 
   handleItemClick = (hospital) => {
-      const {itemClick,history} = this.props;
+      const {itemClick} = this.props;
       itemClick(hospital);
-      history.push('/commands/' + hospital.id);
-
   }
 
   render(){
