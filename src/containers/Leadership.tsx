@@ -6,14 +6,17 @@ import {withRouter} from 'react-router-dom';
 
 const stateToProps = (state,ownProps) => {
   return {
-    leaders: state.leaderIds.map(lid => state.leaders[lid])
+    leaders: state.leaderIds.map(lid => state.leaders[lid]).filter((leader) => {
+        return leader.service_id === ownProps.service.id; 
+    })
   }
 }
 
 const dispatchToProps = (dispatch,ownProps) => {
+
   return {
     itemClick: (leader: LeadersInterface) =>{
-      ownProps.history.push('/leaders/' + leader.id);
+      ownProps.history.push(ownProps.match.url + "/" + leader.id);
     }
   }
 }

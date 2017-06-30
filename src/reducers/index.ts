@@ -1,5 +1,6 @@
 import {defaultCommands, defaultCommandIds} from '../res/data/commands';
 import {defaultLeaders, defaultLeaderIds} from '../res/data/leadership';
+import {defaultServices, defaultServiceIds} from '../res/data/services';
 import {
   WINDOW_RESIZE,
   SET_PAGE_TITLE
@@ -7,6 +8,14 @@ import {
 import {combineReducers} from 'redux';
 //import {arrayPushUnique,arrayRemove} from './_helper';
 
+
+const services = (state = defaultServices, action) => {
+  return state;
+}
+
+const serviceIds = (state = defaultServiceIds, action) => {
+  return state;
+}
 
 const hospitals = (state = defaultCommands, action) => {
   return state;
@@ -50,7 +59,9 @@ const reducer = combineReducers({
   hospitalIds,
   leaders,
   leaderIds,
-  view
+  view,
+  services,
+  serviceIds
 });
 
 export default reducer;

@@ -1,11 +1,6 @@
 import * as React from 'react';
 import {AppPageInterface} from './AppTheme';
 
-const locationsImage = require("../res/images/ui/trimmed/button-locations.png");
-const hotlinesImage = require("../res/images/ui/trimmed/button-dod-hotline-big.png");
-const resourcesImage = require("../res/images/ui/trimmed/button-resources.png");
-const relayHealthImage = require("../res/images/ui/trimmed/button-relay-health-big.png");
-const leaderShipImage = require("../res/images/ui/trimmed/button-leadership.png");
 
 const buttonRowSpacing = {
   margin: '40px auto 40px auto',
@@ -19,6 +14,7 @@ let styles = {
 export interface Props {
   appPage: AppPageInterface;
   setPageTitle(title: string): void;
+  leftIcon: JSX.Element;
 }
 
 export interface State {
@@ -28,23 +24,18 @@ export interface State {
 export default class Home extends React.Component<Props, State>{
 
   componentWillMount(){
-    this.props.appPage.setPageTitle("Home");
+    const {leftIcon} = this.props;
+    this.props.appPage.setPageTitle("MHS Home");
+    this.props.appPage.setMainIcon(leftIcon);
   }
 
   render(){
 
     return <div style={styles}>
               <div style={buttonRowSpacing}>
-                <img src={locationsImage} />
+                <h2>Global Home Page</h2>
               </div>
-              <div style={buttonRowSpacing}>
-                <img src={hotlinesImage} />
-                <img src={relayHealthImage} />
-              </div>
-              <div style={buttonRowSpacing}>
-                <img src={resourcesImage} />
-                <img src={leaderShipImage} />
-              </div>
+ 
     </div>;
   }
 }

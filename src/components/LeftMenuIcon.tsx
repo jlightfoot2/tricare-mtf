@@ -15,13 +15,14 @@ const LeftMenu = () => {
     >
       <MenuItem containerElement={<Link to="/" />} primaryText="Home" />
       <MenuItem containerElement={<Link to="/commands" />} primaryText="Locations" />
-      
+      <MenuItem containerElement={<Link to="/hotlines" />} primaryText="DoD Hotlines" />
 
-      <MenuItem containerElement={<Link to="/army" />} primaryText="Army" />
-      <MenuItem containerElement={<Link to="/army/leaders" />} primaryText="Army Leaders" />
-      <MenuItem containerElement={<Link to="/navy" />} primaryText="Navy" />
-      <MenuItem containerElement={<Link to="/air-force" />} primaryText="Air Force" />
-
+      <MenuItem containerElement={<Link to="/tricare-online" />} primaryText="TRICARE Online" />
+      <MenuItem containerElement={<Link to="/relay-health" />} primaryText="RelayHealth" />
+      <MenuItem containerElement={<Link to="/army" />} primaryText="Army Medicine" />
+      <MenuItem containerElement={<Link to="/navy" />} primaryText="Navy Medicine" />
+      <MenuItem containerElement={<Link to="/air-force" />} primaryText="Air Force Medicine" />
+      <MenuItem containerElement={<Link to="/favorites" />} primaryText="Favorites" />
     </IconMenu>
     );
 }

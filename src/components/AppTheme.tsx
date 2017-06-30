@@ -8,15 +8,14 @@ import SiteNavy from './SiteNavy';
 
 import HomePage from './HomePage';
 import CommandsPage from './CommandsPage';
-import LeadershipPage from './LeadersPage';
-import LeadershipDetailsPage from '../containers/LeadershipDetailsPage';
 import CommandDetailsPage from '../containers/CommandDetailsPage';
 import LeftMenuIcon from './LeftMenuIcon';
 import { Route } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {withRouter} from 'react-router-dom';
-import Page from '../Containers/Page';
+//import Page from './Page';
+
 const muiTheme = getMuiTheme({
   palette: {
     
@@ -35,9 +34,11 @@ export interface AppPageInterface {
   screen:{width: number, height: number};
   setMainIcon(icon: JSX.Element): void;
   setPageTitle(title:string): void;
+  history: any;
 }
 export interface Props {
   setPageTitle(title:string): void;
+  history: any;
 }
 
 export interface State {
@@ -46,6 +47,7 @@ export interface State {
   leftIcon: JSX.Element;
 }
 class App extends React.Component<Props, State>{
+
   constructor(props){
     super(props);
     this.state = {
@@ -60,15 +62,14 @@ class App extends React.Component<Props, State>{
   }
 
   getAppPageObject = ():AppPageInterface => {
-    const {setPageTitle} = this.props;
+    const {setPageTitle,history} = this.props;
     return {
       screen: this.state.screen,
       setMainIcon: this.handleSetMainIcon,
-      setPageTitle
+      setPageTitle,
+      history
     }
   }
-
-
 
   componentDidMount(){
     this.handlePageResize();
@@ -117,33 +118,32 @@ class App extends React.Component<Props, State>{
       
     }
   }
+
   renderRouteComponent = (Component,extraProps = {}) => {
     return (routeProps) => {
-      return <Page {...routeProps} {...extraProps} appPage={this.getAppPageObject()}><Component  /></Page>;
+      const defaultExtra = {
+        leftIcon: <LeftMenuIcon />
+      };
+      extraProps = {...defaultExtra,...extraProps};
+      return  <Component {...routeProps} {...extraProps} appPage={this.getAppPageObject()} />;
     }
   }
-  
+
   render(){
     return <MuiThemeProvider muiTheme={muiTheme}>
             <div>
               <AppBar leftIcon={this.state.leftIcon} /> 
-              <div style={{padding: '10px'}}>
+              <div>
                 
                 <Route exact path="/" render={this.renderRouteComponent(HomePage)} />
                 <Route exact path="/commands" render={this.renderRouteComponent(CommandsPage)} />
                 <Route exact path="/commands/:id" render={this.renderRouteComponent(CommandDetailsPage)} />
                 
-                <Route exact path="/leaders" render={this.renderRouteComponent(LeadershipPage)} />
 
                 <Route path="/army" render={this.renderRouteComponent(SiteArmy)} />
                 <Route path="/navy" render={this.renderRouteComponent(SiteNavy)} />
                 <Route path="/air-force" render={this.renderRouteComponent(SiteAirForce)} />
 
-                <Route exact path="/leaders/army" render={this.renderRouteComponent(LeadershipPage,{service_id: 1})} />
-                <Route exact path="/leaders/navy" render={this.renderRouteComponent(LeadershipPage,{service_id: 2})} />
-                <Route exact path="/leaders/air-force" render={this.renderRouteComponent(LeadershipPage,{service_id: 3})} />
-
-                <Route exact path="/leaders/:id" render={this.renderRouteComponent(LeadershipDetailsPage)} />
               </div>
             </div>
           </MuiThemeProvider>;
