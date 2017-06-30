@@ -25,7 +25,7 @@ export interface Props {
   resourcesImage: string;
   assets: AssetsInterface;
   match:{url: string};
-  leftIcon: JSX.Element;
+  //leftIcon: JSX.Element;
 }
 
 export interface State {
@@ -35,9 +35,9 @@ export interface State {
 export default class ServiceHomePage extends React.Component<Props, State>{
   static maxWidth:number = 640;
   componentWillMount(){
-    const {service,leftIcon} = this.props;
+    const {service} = this.props;
     this.props.appPage.setPageTitle(service.title + " Home");
-    this.props.appPage.setMainIcon(leftIcon);
+    //this.props.appPage.setMainIcon(leftIcon);
     console.log(this.props);
   }
 
@@ -52,7 +52,8 @@ export default class ServiceHomePage extends React.Component<Props, State>{
 
   render(){
     const {assets,match} = this.props;
-    styles.width = this.getContentWidth();
+    //styles.width = this.getContentWidth();
+    styles = {...styles, width: this.getContentWidth()};
     return <div style={styles}>
               <div>
                   <img style={{width: this.getMainButtonWidth()}} src={assets.header} />

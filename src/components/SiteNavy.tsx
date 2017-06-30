@@ -8,6 +8,8 @@ import LeadershipDetailsPage from '../containers/LeadershipDetailsPage';
 import {AssetsInterface} from './ServiceHomePage';
 import BackButton from './BackButton';
 import LeftMenuIcon from './LeftMenuIcon';
+import Page from './Page';
+
 const NavyLeadershipButton = require('../res/images/ui/tricare-navy-leadership.png');
 const NavyResourcesButton = require('../res/images/ui/tricare-navy-resources.png');
 const NavyHeader = require('../res/images/ui/tricare-navy-home-header.png');
@@ -33,13 +35,13 @@ export default class SiteNavy extends React.Component<Props, State>{
     this.props.appPage.setPageTitle("Navy Site");
   }
   
-  renderRouteComponent = (Component,extraProps = {}) => {
+  renderRouteComponent = (Component,extraProps:any = {}) => {
     return (routeProps) => {
       const defaultExtra = {
         leftIcon: <LeftMenuIcon />
       };
       extraProps = {...defaultExtra,...extraProps};
-      return <Component assets={assets} service={NavyInfo} {...routeProps} {...this.props} {...extraProps} />;
+      return <Page leftIcon={extraProps.leftIcon} appPage={this.props.appPage}><Component assets={assets} service={NavyInfo} {...routeProps} {...this.props} {...extraProps} /></Page>;
     };
   }
 

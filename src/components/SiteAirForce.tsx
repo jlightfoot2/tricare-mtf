@@ -32,20 +32,20 @@ export default class SiteAirFoce extends React.Component<Props, State>{
   componentWillMount(){
     this.props.appPage.setPageTitle("Air Force Site");
   }
-  renderRouteComponent = (Component,extraProps = {}) => {
+  renderRouteComponent = (Component,extraProps:any = {}) => {
     return (routeProps) => {
       const defaultExtra = {
         leftIcon: <LeftMenuIcon />
       };
       extraProps = {...defaultExtra,...extraProps};
-      return <Page appPage={this.props.appPage}><Component assets={assets} service={AirForceInfo} {...routeProps} {...this.props} {...extraProps} /></Page>;
+      return <Page leftIcon={extraProps.leftIcon} appPage={this.props.appPage}><Component assets={assets} service={AirForceInfo} {...routeProps} {...this.props} {...extraProps} /></Page>;
     };
   }
   render(){
     const {match} = this.props;
     return <div>
               <Route exact path={match.url} render={this.renderRouteComponent(HomePage)} />
-              <Route exact path={match.url + "/leaders"} render={this.renderRouteComponent(LeadershipPage)} />
+              <Route exact path={match.url + "/leaders"} render={this.renderRouteComponent(LeadershipPage,{leftIcon: <BackButton path={match.url} />})} />
               <Route exact path={match.url + "/leaders/:id"} render={this.renderRouteComponent(LeadershipDetailsPage,{leftIcon: <BackButton path={match.url + "/leaders"} />})} />
     </div>;
   }

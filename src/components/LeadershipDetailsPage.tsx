@@ -6,7 +6,7 @@ import LeadershipDetails from './LeadershipDetails';
 export interface Props {
   appPage: AppPageInterface;
   leader: LeadersInterface;
-  leftIcon: JSX.Element;
+  //leftIcon: JSX.Element;
 }
 
 export interface State {
@@ -16,10 +16,10 @@ export interface State {
 export default class CommandsPage extends React.Component<Props, State>{
 
   componentWillMount(){
-    const {leftIcon} = this.props;
+    //const {leftIcon} = this.props;
     this.props.appPage.setPageTitle("Leader Details");
  
-    this.props.appPage.setMainIcon(leftIcon);
+    //this.props.appPage.setMainIcon(leftIcon);
   }
 
   render(){

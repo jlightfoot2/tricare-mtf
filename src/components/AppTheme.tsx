@@ -14,7 +14,7 @@ import { Route } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {withRouter} from 'react-router-dom';
-//import Page from './Page';
+import Page from './Page';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -119,13 +119,13 @@ class App extends React.Component<Props, State>{
     }
   }
 
-  renderRouteComponent = (Component,extraProps = {}) => {
+  renderRouteComponent = (Component,extraProps:any = {}) => {
     return (routeProps) => {
       const defaultExtra = {
         leftIcon: <LeftMenuIcon />
       };
       extraProps = {...defaultExtra,...extraProps};
-      return  <Component {...routeProps} {...extraProps} appPage={this.getAppPageObject()} />;
+      return <Page leftIcon={extraProps.leftIcon} appPage={this.getAppPageObject()} ><Component {...routeProps} {...extraProps}  /></Page>;
     }
   }
 

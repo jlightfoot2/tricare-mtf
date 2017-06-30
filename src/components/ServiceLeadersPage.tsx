@@ -2,7 +2,7 @@ import * as React from 'react';
 import LeadershipContainer from '../containers/Leadership';
 import {ServiceInterface} from '../res/data/services';
 import {AppPageInterface} from './AppTheme';
-import BackButton from './BackButton';
+//import BackButton from './BackButton';
 export interface Props {
   appPage: AppPageInterface;
   service: ServiceInterface;
@@ -16,9 +16,9 @@ export interface State {
 export default class ServiceLeadershipPage extends React.Component<Props, State>{
 
   componentWillMount(){
-    const {service,appPage,match} = this.props;
+    const {service,appPage} = this.props;
     appPage.setPageTitle(service.title + " Leadership");
-    appPage.setMainIcon(<BackButton path={match.url} />);
+    //appPage.setMainIcon(<BackButton path={match.url} />);
   }
 
   render(){

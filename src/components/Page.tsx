@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {AppPageInterface} from './AppTheme';
-//import LeftMenuIcon from './LeftMenuIcon';
 export interface Props {
-  appPage: AppPageInterface
+  appPage: AppPageInterface;
+  leftIcon: JSX.Element;
 }
 
 export interface State {
@@ -11,9 +11,10 @@ export interface State {
 
 export default class Page extends React.Component<Props, State>{
   
-  componentWillUnmount(){
-    //const {appPage} = this.props;
-    //appPage.setMainIcon(<LeftMenuIcon />);
+  componentDidMount(){
+
+    const {appPage,leftIcon} = this.props;
+    appPage.setMainIcon(leftIcon);
   }
 
   render(){

@@ -55,14 +55,14 @@ module.exports = {
           '__DEVTOOLS__': false,
           '__INCLUDE_SERVICE_WORKER__': true
         }),
-
+       /*
         new CleanWebpackPlugin(['dist'], {
         //  root: '/full/project/path',
         //  verbose: true,
         //  dry: false,
         //  exclude: ['shared.js']
         }),
-
+            */
         new webpack.optimize.CommonsChunkPlugin({
           children: true, // Look for common dependencies in all children,
           minChunks: 2 // How many times a dependency must come up before being extracted
