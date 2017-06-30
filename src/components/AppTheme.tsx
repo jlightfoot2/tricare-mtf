@@ -13,8 +13,9 @@ import LeftMenuIcon from './LeftMenuIcon';
 import { Route } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+//import BackButton from './BackButton';
 import {withRouter} from 'react-router-dom';
-import Page from './Page';
+import {withPageInfo} from './RoutePage';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -106,13 +107,13 @@ class App extends React.Component<Props, State>{
 
          resizeTimeoutId = setTimeout(
                 () => {
-                  
+                  console.log(this.getScreenDimensions());
                  this.setState({
                    screen: this.getScreenDimensions()
                  }); 
                   
                 },
-              500);
+              200);
        }
 
       
@@ -122,27 +123,30 @@ class App extends React.Component<Props, State>{
   renderRouteComponent = (Component,extraProps:any = {}) => {
     return (routeProps) => {
       const defaultExtra = {
-        leftIcon: <LeftMenuIcon />
+        leftIcon: <LeftMenuIcon />,
+        appPage: this.getAppPageObject()
       };
       extraProps = {...defaultExtra,...extraProps};
-      return <Page leftIcon={extraProps.leftIcon} appPage={this.getAppPageObject()} ><Component {...routeProps} {...extraProps}  /></Page>;
+      return <Component {...routeProps} {...extraProps}  />;
     }
   }
 
   render(){
+
+    const childProps = {appPage: this.getAppPageObject()};
     return <MuiThemeProvider muiTheme={muiTheme}>
             <div>
               <AppBar leftIcon={this.state.leftIcon} /> 
               <div>
                 
-                <Route exact path="/" render={this.renderRouteComponent(HomePage)} />
-                <Route exact path="/commands" render={this.renderRouteComponent(CommandsPage)} />
-                <Route exact path="/commands/:id" render={this.renderRouteComponent(CommandDetailsPage)} />
+                <Route exact path="/" render={withPageInfo(HomePage,childProps)} />
+                <Route exact path="/hospitals" render={withPageInfo(CommandsPage,childProps)} />
+                <Route exact path="/commands/:id" render={withPageInfo(CommandDetailsPage,childProps)} />
                 
 
-                <Route path="/army" render={this.renderRouteComponent(SiteArmy)} />
-                <Route path="/navy" render={this.renderRouteComponent(SiteNavy)} />
-                <Route path="/air-force" render={this.renderRouteComponent(SiteAirForce)} />
+                <Route path="/army" render={withPageInfo(SiteArmy,childProps)} />
+                <Route path="/navy" render={withPageInfo(SiteNavy,childProps)} />
+                <Route path="/air-force" render={withPageInfo(SiteAirForce,childProps)} />
 
               </div>
             </div>

@@ -17,10 +17,12 @@ export default class CommandDetails extends React.Component<Props, State>{
   constructor(props){
     super(props);
   }
+
+
   componentWillMount(){
     const {appPage} = this.props;
     this.props.appPage.setPageTitle("Command Details");
-    appPage.setMainIcon(<BackButton path={'/commands'} />);
+    appPage.setMainIcon(<BackButton path={'/hospitals'} />);
   }
 
 

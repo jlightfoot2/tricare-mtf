@@ -2,20 +2,39 @@ import * as React from 'react';
 import {AppPageInterface} from './AppTheme';
 import {ServiceInterface} from '../res/data/services';
 import { Link } from 'react-router-dom';
+
+const tricareBanner = require('../res/images/ui/tricare-banner.png');
 /*
 const buttonRowSpacing = {
   margin: '40px auto 40px auto',
   padding: '40px auto 40px auto'
 }*/
 let styles = {
-  backgroundColor: '#1b4583',
+//  backgroundColor: '#1b4583',
   margin: '0px auto 0px auto',
   width: 500
 }
+
+let bgStyles = {
+ 
+    position: "fixed" as 'fixed',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    width: '100%',
+    zIndex: -1
+} 
+
 export interface AssetsInterface {
     header: string;
     leadershipImage: string;
     resourcesImage: string;
+    facebookImage: string;
+    twitterImage: string;
+    youTubeImage: string;
+    websiteImage: string;
+    backgroundImage: string;
 }
 
 export interface Props {
@@ -51,23 +70,51 @@ export default class ServiceHomePage extends React.Component<Props, State>{
   }
 
   render(){
-    const {assets,match} = this.props;
-    //styles.width = this.getContentWidth();
+    const {assets,match,appPage} = this.props;
+ 
     styles = {...styles, width: this.getContentWidth()};
-    return <div style={styles}>
-              <div>
-                  <img style={{width: this.getMainButtonWidth()}} src={assets.header} />
-              </div>
-              <div>
-                <Link to={match.url + '/leaders'}>
-                  <img style={{width: this.getMainButtonWidth()}} src={assets.leadershipImage} />
-                </Link>
-              </div>
-              <div>
-                <Link to={match.url + '/resources'}>
-                  <img style={{width: this.getMainButtonWidth()}} src={assets.resourcesImage} />
-                </Link>
-              </div>
-    </div>;
+    bgStyles = {...bgStyles, background:  `url(${assets.backgroundImage}) repeat`, height: appPage.screen.height + "px"}
+    const halfButtonStyles = {
+      width: this.getContentWidth() / 2
+    }
+    return <div>
+              <div style={bgStyles} />
+              <div style={styles}>
+              
+                <div>
+                    <img style={{width: this.getMainButtonWidth()}} src={assets.header} />
+                </div>
+                <div>
+                  <Link to={match.url + '/leaders'}>
+                    <img style={{width: this.getMainButtonWidth()}} src={assets.leadershipImage} />
+                  </Link>
+                </div>
+                <div>
+                  <Link to={match.url + '/resources'}>
+                    <img style={{width: this.getMainButtonWidth()}} src={assets.resourcesImage} />
+                  </Link>
+                </div>
+                <div>
+                    <Link to={match.url + '/facebook'}>
+                      <img style={halfButtonStyles} src={assets.facebookImage} />
+                    </Link>
+                    <Link to={match.url + '/twitter'}>
+                      <img style={halfButtonStyles} src={assets.twitterImage} />
+                    </Link>
+                </div>
+                <div>
+                    <Link to={match.url + '/youtube'}>
+                      <img style={halfButtonStyles} src={assets.youTubeImage} />
+                    </Link>
+
+                    <Link to={match.url + '/website'}>
+                      <img style={halfButtonStyles} src={assets.websiteImage} />
+                    </Link>
+                </div>
+                <div>
+                    <img style={{width: this.getMainButtonWidth()}} src={tricareBanner} />
+                </div>
+            </div>
+          </div>;
   }
 }

@@ -14,7 +14,7 @@ const LeftMenu = () => {
       targetOrigin={{horizontal: 'left', vertical: 'top'}}
     >
       <MenuItem containerElement={<Link to="/" />} primaryText="Home" />
-      <MenuItem containerElement={<Link to="/commands" />} primaryText="Locations" />
+      <MenuItem containerElement={<Link to="/hospitals" />} primaryText="Locations" />
       <MenuItem containerElement={<Link to="/hotlines" />} primaryText="DoD Hotlines" />
 
       <MenuItem containerElement={<Link to="/tricare-online" />} primaryText="TRICARE Online" />

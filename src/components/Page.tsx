@@ -11,8 +11,7 @@ export interface State {
 
 export default class Page extends React.Component<Props, State>{
   
-  componentDidMount(){
-
+  componentWillMount(){
     const {appPage,leftIcon} = this.props;
     appPage.setMainIcon(leftIcon);
   }

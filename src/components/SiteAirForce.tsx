@@ -7,8 +7,7 @@ import { Route } from 'react-router-dom';
 import {AirForceInfo} from '../res/data/services';
 import {AssetsInterface} from './ServiceHomePage';
 import BackButton from './BackButton';
-import LeftMenuIcon from './LeftMenuIcon';
-import Page from './Page';
+import {withServicesInfo} from './RoutePage';
 const AfLeadershipButton = require('../res/images/ui/tricare-af-leadership.png');
 const AfResourcesButton = require('../res/images/ui/tricare-af-resources.png');
 const AfHeader = require('../res/images/ui/tricare-af-home-header.png');
@@ -16,7 +15,12 @@ const AfHeader = require('../res/images/ui/tricare-af-home-header.png');
 const assets:AssetsInterface = {
   header:  AfHeader,
   leadershipImage: AfLeadershipButton,
-  resourcesImage: AfResourcesButton
+  resourcesImage: AfResourcesButton,
+  facebookImage: require('../res/images/ui/tricare-af-facebook.png'),
+  twitterImage: require('../res/images/ui/tricare-af-twitter.png'),
+  websiteImage: require('../res/images/ui/tricare-af-website.png'),
+  youTubeImage: require('../res/images/ui/tricare-af-youtube.png'),
+  backgroundImage: require('../res/images/ui/tricare-af-background.png')
 }
 export interface Props {
   appPage: AppPageInterface;
@@ -24,7 +28,7 @@ export interface Props {
 }
 
 export interface State {
-  
+
 }
 
 export default class SiteAirFoce extends React.Component<Props, State>{
@@ -32,21 +36,14 @@ export default class SiteAirFoce extends React.Component<Props, State>{
   componentWillMount(){
     this.props.appPage.setPageTitle("Air Force Site");
   }
-  renderRouteComponent = (Component,extraProps:any = {}) => {
-    return (routeProps) => {
-      const defaultExtra = {
-        leftIcon: <LeftMenuIcon />
-      };
-      extraProps = {...defaultExtra,...extraProps};
-      return <Page leftIcon={extraProps.leftIcon} appPage={this.props.appPage}><Component assets={assets} service={AirForceInfo} {...routeProps} {...this.props} {...extraProps} /></Page>;
-    };
-  }
+
   render(){
-    const {match} = this.props;
+    const {match,appPage} = this.props;
+    const childProps = {assets,service: AirForceInfo,appPage};
     return <div>
-              <Route exact path={match.url} render={this.renderRouteComponent(HomePage)} />
-              <Route exact path={match.url + "/leaders"} render={this.renderRouteComponent(LeadershipPage,{leftIcon: <BackButton path={match.url} />})} />
-              <Route exact path={match.url + "/leaders/:id"} render={this.renderRouteComponent(LeadershipDetailsPage,{leftIcon: <BackButton path={match.url + "/leaders"} />})} />
+              <Route exact path={match.url} render={withServicesInfo(HomePage,childProps)} />
+              <Route exact path={match.url + "/leaders"} render={withServicesInfo(LeadershipPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />
+              <Route exact path={match.url + "/leaders/:id"} render={withServicesInfo(LeadershipDetailsPage,{...childProps,leftIcon: <BackButton path={match.url + "/leaders"} />})} />
     </div>;
   }
 }
