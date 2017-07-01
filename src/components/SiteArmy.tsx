@@ -7,6 +7,7 @@ import HomePage from '../containers/ServiceHomePage';
 import {AssetsInterface} from './ServiceHomePage';
 import LeadershipDetailsPage from '../containers/LeadershipDetailsPage';
 import BackButton from './BackButton';
+import FacebookPage from './FaceBookPage';
 import {withServicesInfo} from './RoutePage';
 const ArmyLeadershipButton = require('../res/images/ui/tricare-army-leadership.png');
 const ArmyResourcesButton = require('../res/images/ui/tricare-army-resources.png');
@@ -44,6 +45,7 @@ export default class SiteArmy extends React.Component<Props, State>{
     const childProps = {assets,service: ArmyInfo,appPage};
     return <div>
               <Route exact path={match.url} render={withServicesInfo(HomePage,childProps)} />
+              <Route exact path={match.url + "/facebook"} render={withServicesInfo(FacebookPage,childProps)} />
               <Route exact path={match.url + "/leaders"} render={withServicesInfo(LeadershipPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />
               <Route exact path={match.url + "/leaders/:id"} render={withServicesInfo(LeadershipDetailsPage,{...childProps,leftIcon: <BackButton path={match.url + "/leaders"} />})} />
     </div>;
