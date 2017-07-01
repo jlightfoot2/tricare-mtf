@@ -2,6 +2,7 @@ import * as React from 'react';
 import {AppPageInterface} from './AppTheme';
 import LeadershipPage from './ServiceLeadersPage';
 import FacebookPage from './FaceBookPage';
+import TwitterPage from './TwitterPage';
 import { Route } from 'react-router-dom';
 import {NavyInfo} from '../res/data/services';
 import HomePage from '../containers/ServiceHomePage';
@@ -46,6 +47,7 @@ export default class SiteNavy extends React.Component<Props, State>{
     return <div>
               <Route exact path={match.url} render={withServicesInfo(HomePage,childProps)} />
               <Route exact path={match.url + "/facebook"} render={withServicesInfo(FacebookPage,childProps)} />
+              <Route exact path={match.url + "/twitter"} render={withServicesInfo(TwitterPage,childProps)} />
               <Route exact path={match.url + "/leaders"} render={withServicesInfo(LeadershipPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />
               <Route exact path={match.url + "/leaders/:id"} render={withServicesInfo(LeadershipDetailsPage,{...childProps,leftIcon: <BackButton path={match.url + "/leaders"} />})} />
     </div>;

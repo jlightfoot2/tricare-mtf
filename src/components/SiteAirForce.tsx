@@ -9,6 +9,7 @@ import {AssetsInterface} from './ServiceHomePage';
 import BackButton from './BackButton';
 import {withServicesInfo} from './RoutePage';
 import FacebookPage from './FaceBookPage';
+import TwitterPage from './TwitterPage';
 const AfLeadershipButton = require('../res/images/ui/tricare-af-leadership.png');
 const AfResourcesButton = require('../res/images/ui/tricare-af-resources.png');
 const AfHeader = require('../res/images/ui/tricare-af-home-header.png');
@@ -44,6 +45,7 @@ export default class SiteAirFoce extends React.Component<Props, State>{
     return <div>
               <Route exact path={match.url} render={withServicesInfo(HomePage,childProps)} />
               <Route exact path={match.url + "/facebook"} render={withServicesInfo(FacebookPage,childProps)} />
+              <Route exact path={match.url + "/twitter"} render={withServicesInfo(TwitterPage,childProps)} />
               <Route exact path={match.url + "/leaders"} render={withServicesInfo(LeadershipPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />
               <Route exact path={match.url + "/leaders/:id"} render={withServicesInfo(LeadershipDetailsPage,{...childProps,leftIcon: <BackButton path={match.url + "/leaders"} />})} />
     </div>;

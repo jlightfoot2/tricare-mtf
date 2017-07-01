@@ -7,16 +7,18 @@ export interface ServiceInterface{
   id: number;
   title: string;
   facebook: string;
+  twitter: string;
   image: string;
   icon: string;
 }
 
 
-export const makeServie = (id:number, title: string,facebook: string, image: string = '', icon: string = '') => {
+export const makeServie = (id:number, title: string,facebook: string, twitter: string, image: string = '', icon: string = '') => {
   return {
     id,
     title,
     facebook,
+    twitter,
     image,
     icon
   }
@@ -27,17 +29,20 @@ export const makeServie = (id:number, title: string,facebook: string, image: str
 export const ArmyInfo = makeServie(
   1, 
   'Army',
-  'https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FOfficialArmyMedicine%2F'
+  'https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FOfficialArmyMedicine%2F',
+  'https://twitter.com/ArmyMedicine'
   );
 export const NavyInfo = makeServie(
   2, 
   'Navy',
-  'https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FUSNavyMedicine%2F'
+  'https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FUSNavyMedicine%2F',
+  'https://twitter.com/NavyMedicine'
 );
 export const AirForceInfo = makeServie(
   3, 
   'Air Force',
-  'https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FAirForceMedicalService%2F'
+  'https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FAirForceMedicalService%2F',
+  'https://twitter.com/usafhealth'
 );
 
 const serviceData:ServiceInterface[] = [
