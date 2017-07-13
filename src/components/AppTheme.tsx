@@ -14,6 +14,7 @@ import { Route } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 //import BackButton from './BackButton';
+import Page from '../Containers/Page';
 import {withRouter} from 'react-router-dom';
 import {withPageInfo} from './RoutePage';
 
@@ -21,7 +22,7 @@ const muiTheme = getMuiTheme({
   palette: {
     
     textColor: '#000000',
-    primary1Color: '#000000',
+    primary1Color: '#475976',
     primary2Color: '#1b4583',
     primary3Color: '#1b4583'
 
@@ -32,20 +33,23 @@ const muiTheme = getMuiTheme({
 });
 
 export interface AppPageInterface {
-  screen:{width: number, height: number};
+  screen:{width: number, height: number, orientation: string};
   setMainIcon(icon: JSX.Element): void;
   setPageTitle(title:string): void;
+  setTitlePath(titlePath:string):void;
   history: any;
 }
+
 export interface Props {
   setPageTitle(title:string): void;
   history: any;
 }
 
 export interface State {
-  screen:{width: number, height: number}
+  screen:{width: number, height: number,orientation: string}
   title: string;
   leftIcon: JSX.Element;
+  titlePath: string;
 }
 class App extends React.Component<Props, State>{
 
@@ -54,12 +58,17 @@ class App extends React.Component<Props, State>{
     this.state = {
       screen: this.getScreenDimensions(),
       title: props.title,
-      leftIcon: <LeftMenuIcon />
+      leftIcon: <LeftMenuIcon />,
+      titlePath: '/'
     }
   }
 
   handleSetMainIcon = (leftIcon: JSX.Element) => {
     this.setState({leftIcon})
+  }
+
+  handleSetTitlePath = (titlePath: string) => {
+    this.setState({titlePath})
   }
 
   getAppPageObject = ():AppPageInterface => {
@@ -68,7 +77,8 @@ class App extends React.Component<Props, State>{
       screen: this.state.screen,
       setMainIcon: this.handleSetMainIcon,
       setPageTitle,
-      history
+      history,
+      setTitlePath: this.handleSetTitlePath
     }
   }
 
@@ -77,10 +87,19 @@ class App extends React.Component<Props, State>{
   }
 
   getScreenDimensions = () => {
+    const orientation = window.innerWidth >= window.innerHeight ? 'landscape' : 'portrait';
+ 
     return {
        width: window.innerWidth,
-       height: window.innerHeight
+       height: window.innerHeight,
+       orientation
     }
+  }
+
+  handleTitleClick = (event) => {
+    const {history} = this.props;
+    const {titlePath} = this.state;
+    history.push(titlePath);
   }
 
   hasScreenChanged = () => {
@@ -124,19 +143,21 @@ class App extends React.Component<Props, State>{
     return (routeProps) => {
       const defaultExtra = {
         leftIcon: <LeftMenuIcon />,
-        appPage: this.getAppPageObject()
+        appPage: this.getAppPageObject(),
+        titlePath: "/"
       };
       extraProps = {...defaultExtra,...extraProps};
-      return <Component {...routeProps} {...extraProps}  />;
+      return <Page titlePath={extraProps.titlePath} leftIcon={extraProps.leftIcon} appPage={extraProps.appPage}><Component {...routeProps} {...extraProps} /></Page>;
     }
   }
+
 
   render(){
 
     const childProps = {appPage: this.getAppPageObject()};
     return <MuiThemeProvider muiTheme={muiTheme}>
             <div>
-              <AppBar leftIcon={this.state.leftIcon} /> 
+              <AppBar  leftIcon={this.state.leftIcon} onTitleClick={this.handleTitleClick} />
               <div>
                 
                 <Route exact path="/" render={withPageInfo(HomePage,childProps)} />

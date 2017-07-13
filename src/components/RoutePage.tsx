@@ -24,14 +24,23 @@ export const withServicesInfo = (WrappedComponent,props:{assets: AssetsInterface
     };
 }
 
-export const withPageInfo = (WrappedComponent,props:{appPage:any, [propName: string]: any}) => {
+export const withPageInfo = (Component,extraProps:{appPage:any, [propName: string]: any}) => {
+    // return (routeProps) => {
+    //   const defaultExtra = {
+    //     leftIcon: <LeftMenuIcon />
+    //   };
+    //   props = {...defaultExtra,...props};
+    //   return <Page {...props as any}><WrappedComponent {...routeProps} /></Page>;
+    // };
     return (routeProps) => {
       const defaultExtra = {
-        leftIcon: <LeftMenuIcon />
+        leftIcon: <LeftMenuIcon />,
+        appPage: extraProps.appPage,
+        titlePath: "/"
       };
-      props = {...defaultExtra,...props};
-      return <Page {...props as any}><WrappedComponent {...routeProps} /></Page>;
-    };
+      extraProps = {...defaultExtra,...extraProps};
+      return <Page titlePath={extraProps.titlePath} leftIcon={extraProps.leftIcon} appPage={extraProps.appPage}><Component {...routeProps} {...extraProps} /></Page>;
+    }
 }
 
 /*
