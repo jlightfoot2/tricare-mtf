@@ -1,4 +1,4 @@
-export const PrimaryColor = "#E0E0E0";
+export const PrimaryColor = "#1b4583";
 export const PrimaryColor2 = "#475976";
 
 export let listItemImage = {

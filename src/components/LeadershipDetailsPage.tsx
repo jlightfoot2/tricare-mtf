@@ -21,9 +21,13 @@ export default class CommandsPage extends React.Component<Props, State>{
  
     //this.props.appPage.setMainIcon(leftIcon);
   }
-
+  getContentWidth = () => {
+    const {appPage} = this.props;
+    const maxWidth = LeadershipDetails.MAX_WIDTH;
+    return  (appPage.screen.width > maxWidth ? maxWidth : appPage.screen.width) * 0.90;
+  }
   render(){
     const {leader} = this.props;
-    return <LeadershipDetails leader={leader} />;
+    return <LeadershipDetails contentWidth={this.getContentWidth()} leader={leader} />;
   }
 }

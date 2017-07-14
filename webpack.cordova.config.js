@@ -53,7 +53,8 @@ module.exports = {
             'NODE_ENV': JSON.stringify('production')
           },
           '__DEVTOOLS__': false,
-          '__INCLUDE_SERVICE_WORKER__': true
+          '__INCLUDE_SERVICE_WORKER__': true,
+          '__IS_CORDOVA_BUILD__': true
         }),
        /*
         new CleanWebpackPlugin(['dist'], {

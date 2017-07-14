@@ -9,7 +9,7 @@ const commandsDataWithImages = commandsDataRaw.map(item => { //run images throug
   if(item.icon.length > 0){
     item.icon = require('../images/commands/icons/' + item.icon);
   }
-  
+  item['distance'] = -1;
   return item;
 });
 
@@ -22,11 +22,13 @@ export interface CommandInterface{
   phone: string;
   website: string;
   facebook: string;
+  twitter: string;
   address: string;
   latitude: number;
   longitude: number;
   img: string;
   icon: string;
+  distance: number;
 }
 
 export const normalizedCommands = normalize(commandsDataWithImages, commandsArraySchema);

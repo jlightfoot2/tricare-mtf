@@ -66,7 +66,8 @@ module.exports = {
             'NODE_ENV': JSON.stringify('dev')
           },
           '__DEVTOOLS__': true,
-          '__INCLUDE_SERVICE_WORKER__': false
+          '__INCLUDE_SERVICE_WORKER__': false,
+          '__IS_CORDOVA_BUILD__': false
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),

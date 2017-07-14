@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
+import ArrowBack from 'material-ui/svg-icons/navigation/chevron-left';
 import IconButton from 'material-ui/IconButton';
 import { Link } from 'react-router-dom';
 

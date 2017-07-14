@@ -43,13 +43,13 @@ export default class SiteNavy extends React.Component<Props, State>{
 
   render(){
     const {match,appPage} = this.props;
-    const childProps = {assets,service: NavyInfo,appPage};
+    const childProps = {assets,service: NavyInfo,appPage, titlePath: '/navy'};
     return <div>
               <Route exact path={match.url} render={withServicesInfo(HomePage,childProps)} />
               <Route exact path={match.url + "/facebook"} render={withServicesInfo(FacebookPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />
               <Route exact path={match.url + "/twitter"} render={withServicesInfo(TwitterPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />
               <Route exact path={match.url + "/leaders"} render={withServicesInfo(LeadershipPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />
-              <Route exact path={match.url + "/leaders/:id"} render={withServicesInfo(LeadershipDetailsPage,{...childProps,leftIcon: <BackButton path={match.url + "/leaders"} />})} />
+              <Route exact path={match.url + "/leaders/:id"} render={withServicesInfo(LeadershipDetailsPage,{...childProps,titlePath: '/navy/leaders',leftIcon: <BackButton path={match.url + "/leaders"} />})} />
     </div>;
   }
 }

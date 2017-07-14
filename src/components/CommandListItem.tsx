@@ -25,7 +25,14 @@ export default class CommandItem extends React.Component<Props, State>{
   render(){
     const {hospital} = this.props;
 
-    return <ListItem onTouchTap={this.handleItemClick} leftAvatar={<Avatar src={hospital.icon} />} primaryText={hospital.title} />
+    const distanceString = hospital.distance > 0 ? hospital.distance + ' miles' : ''
+
+    return <ListItem 
+            onTouchTap={this.handleItemClick} 
+            leftAvatar={<Avatar src={hospital.icon} />} 
+            primaryText={hospital.title} 
+            secondaryText={distanceString}
+            />
   }
 }
 

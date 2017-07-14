@@ -13,25 +13,20 @@ import {AssetsInterface} from './ServiceHomePage';
  * @param  {Object} extraProps:any         [description]
  * @return {[type]}                        [description]
  */
-export const withServicesInfo = (WrappedComponent,props:{assets: AssetsInterface,service: ServiceInterface, appPage:any, [propName: string]: any}) => {
-    const {assets,service} = props;
+export const withServicesInfo = (WrappedComponent,extraProps:{assets: AssetsInterface,service: ServiceInterface, appPage:any, [propName: string]: any}) => {
+    const {assets,service} = extraProps;
     return (routeProps) => {
       const defaultExtra = {
-        leftIcon: <LeftMenuIcon />
+        appPage: extraProps.appPage,
+        leftIcon: <LeftMenuIcon />,
+        titlePath: "/"
       };
-      props = {...defaultExtra,...props};
-      return <Page {...props as any}><WrappedComponent assets={assets} service={service} {...routeProps} /></Page>;
+      extraProps = {...defaultExtra,...extraProps};
+      return <Page titlePath={extraProps.titlePath} leftIcon={extraProps.leftIcon} appPage={extraProps.appPage}><WrappedComponent {...extraProps} assets={assets} service={service} {...routeProps} /></Page>;
     };
 }
 
 export const withPageInfo = (Component,extraProps:{appPage:any, [propName: string]: any}) => {
-    // return (routeProps) => {
-    //   const defaultExtra = {
-    //     leftIcon: <LeftMenuIcon />
-    //   };
-    //   props = {...defaultExtra,...props};
-    //   return <Page {...props as any}><WrappedComponent {...routeProps} /></Page>;
-    // };
     return (routeProps) => {
       const defaultExtra = {
         leftIcon: <LeftMenuIcon />,

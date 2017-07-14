@@ -5,7 +5,7 @@ import AppBar from '../containers/AppBar';
 import SiteAirForce from './SiteAirForce';
 import SiteArmy from './SiteArmy';
 import SiteNavy from './SiteNavy';
-
+import HotlinesPage from './HotlinesPage';
 import HomePage from './HomePage';
 import CommandsPage from './CommandsPage';
 import CommandDetailsPage from '../containers/CommandDetailsPage';
@@ -13,8 +13,10 @@ import LeftMenuIcon from './LeftMenuIcon';
 import { Route } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import SnackbarGlobal from '../containers/SnackbarGlobal';
+import EulaDialog from '../containers/Eula';
 //import BackButton from './BackButton';
-import Page from '../Containers/Page';
+//import Page from '../Containers/Page';
 import {withRouter} from 'react-router-dom';
 import {withPageInfo} from './RoutePage';
 
@@ -139,18 +141,6 @@ class App extends React.Component<Props, State>{
     }
   }
 
-  renderRouteComponent = (Component,extraProps:any = {}) => {
-    return (routeProps) => {
-      const defaultExtra = {
-        leftIcon: <LeftMenuIcon />,
-        appPage: this.getAppPageObject(),
-        titlePath: "/"
-      };
-      extraProps = {...defaultExtra,...extraProps};
-      return <Page titlePath={extraProps.titlePath} leftIcon={extraProps.leftIcon} appPage={extraProps.appPage}><Component {...routeProps} {...extraProps} /></Page>;
-    }
-  }
-
 
   render(){
 
@@ -163,13 +153,15 @@ class App extends React.Component<Props, State>{
                 <Route exact path="/" render={withPageInfo(HomePage,childProps)} />
                 <Route exact path="/hospitals" render={withPageInfo(CommandsPage,childProps)} />
                 <Route exact path="/commands/:id" render={withPageInfo(CommandDetailsPage,childProps)} />
-                
+                <Route exact path="/hotlines" render={withPageInfo(HotlinesPage,childProps)} />
 
                 <Route path="/army" render={withPageInfo(SiteArmy,childProps)} />
                 <Route path="/navy" render={withPageInfo(SiteNavy,childProps)} />
                 <Route path="/air-force" render={withPageInfo(SiteAirForce,childProps)} />
 
               </div>
+              <SnackbarGlobal />
+              <EulaDialog />
             </div>
           </MuiThemeProvider>;
  
