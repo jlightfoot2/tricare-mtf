@@ -32,6 +32,7 @@ export default class SnackbarGlobal extends React.Component<Props, State>{
               message={this.props.message}
               onActionTouchTap={this.handleOnclick}
               action="Close" 
+              contentStyle={{color: 'black'}}
               />;
   }
 }

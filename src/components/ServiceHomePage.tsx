@@ -2,6 +2,7 @@ import * as React from 'react';
 import {AppPageInterface} from './AppTheme';
 import {ServiceInterface} from '../res/data/services';
 import { Link } from 'react-router-dom';
+import ExternalLink from './ExternalLink';
 
 const tricareBanner = require('../res/images/ui/tricare-banner.png');
 /*
@@ -70,10 +71,11 @@ export default class ServiceHomePage extends React.Component<Props, State>{
   }
 
   render(){
-    const {assets,match,appPage} = this.props;
- 
+    const {assets,match,appPage,service} = this.props;
+    console.log(service);
     styles = {...styles, width: this.getContentWidth()};
     bgStyles = {...bgStyles, background:  `url(${assets.backgroundImage}) repeat`, height: appPage.screen.height + "px"}
+
     const halfButtonStyles = {
       width: this.getContentWidth() / 2
     }
@@ -103,13 +105,13 @@ export default class ServiceHomePage extends React.Component<Props, State>{
                     </Link>
                 </div>
                 <div>
-                    <Link to={match.url + '/youtube'}>
+                    <ExternalLink absolutePath={service.youtube}>
                       <img style={halfButtonStyles} src={assets.youTubeImage} />
-                    </Link>
+                    </ExternalLink>
 
-                    <Link to={match.url + '/website'}>
+                    <ExternalLink absolutePath={service.website}>
                       <img style={halfButtonStyles} src={assets.websiteImage} />
-                    </Link>
+                    </ExternalLink>
                 </div>
                 <div>
                     <img style={{width: this.getMainButtonWidth()}} src={tricareBanner} />

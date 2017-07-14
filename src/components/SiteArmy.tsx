@@ -4,6 +4,7 @@ import LeadershipPage from './ServiceLeadersPage';
 import { Route } from 'react-router-dom';
 import {ArmyInfo} from '../res/data/services';
 import HomePage from '../containers/ServiceHomePage';
+import ResourcesPage from './ResourcesPage';
 import {AssetsInterface} from './ServiceHomePage';
 import LeadershipDetailsPage from '../containers/LeadershipDetailsPage';
 import BackButton from './BackButton';
@@ -46,6 +47,7 @@ export default class SiteArmy extends React.Component<Props, State>{
     const childProps = {assets,service: ArmyInfo,appPage,titlePath: '/army'};
     return <div>
               <Route exact path={match.url} render={withServicesInfo(HomePage,childProps)} />
+              <Route exact path={match.url + "/resources"} render={withServicesInfo(ResourcesPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />
               <Route exact path={match.url + "/facebook"} render={withServicesInfo(FacebookPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />
               <Route exact path={match.url + "/twitter"} render={withServicesInfo(TwitterPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />
               <Route exact path={match.url + "/leaders"} render={withServicesInfo(LeadershipPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />

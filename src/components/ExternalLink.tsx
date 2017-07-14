@@ -1,3 +1,7 @@
+/**
+* you must install cordova-plugin-inappbrowser for this to work in cordova apps
+ * 
+ */
 import * as React from 'react';
 
 export interface Props {

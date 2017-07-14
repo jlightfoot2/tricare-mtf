@@ -16,9 +16,53 @@ export const SET_GEO_SEARCH_RESULTS = 'T2.SET_GEO_SEARCH_RESULTS';
 export const DISMISS_911_WARNING = 'T2.DISMISS_911_WARNING';
 export const SET_HOSPITAL_GEO_SORT_TEXT = 'T2.SET_HOSPITAL_GEO_SORT_TEXT';
 export const UNWATCH_CURRENT_LOCATION = 'T2.UNWATCH_CURRENT_LOCATION';
+export const SET_DRAWER_OPEN = 'T2.SET_DRAWER_OPEN';
+export const SET_HOSPITALS_PAGE = 'T2.SET_HOSPITALS_PAGE';
+
 
 import {search_city, search_zipcodes, get_results_array} from '../sqlite';
-import {getHospitalSortFilter} from '../containers/selectors'
+import {getHospitalSortFilter,getDrawerOpen,getHospitalPage,getHospitalsPageMax} from '../containers/selectors'
+
+
+export const hospitalNextPage = () => {
+  return (dispatch,getState,extraArgs) => {
+    const page = getHospitalPage(getState());
+    if(page < 0){
+      dispatch(setHospitalPage(page + 1));
+    }
+  }
+}
+
+export const hospitalPrevPage = () => {
+  return (dispatch,getState,extraArgs) => {
+    const currState = getState();
+    const page = getHospitalPage(currState);
+    if(page > getHospitalsPageMax(currState)){
+      dispatch(setHospitalPage(page - 1));
+    }
+  }
+}
+
+export const setHospitalPage = (page: number) => {
+  return {
+    type: SET_HOSPITALS_PAGE,
+    page
+  }
+}
+
+export const toggleMainDrawer = () => {
+  return (dispatch,getState,extraArgs) => {
+    dispatch(setDrawerOpen(!getDrawerOpen(getState())));
+  }
+}
+
+export const setDrawerOpen = (open: boolean) => {
+  return {
+    type: SET_DRAWER_OPEN,
+    open
+  }
+}
+
 
 export const eulaAccepted = () => {
   return {
@@ -50,7 +94,6 @@ export const setGpsSearchResults = (results:{title: string, latitude: number, lo
 let geoWatchID;
 
 export const watchCurrentLocation = () => {
-  console.log('watchCurrentLocation');
   return (dispatch,getState,extraArgs) => {
     if(geoWatchID){
       window.navigator.geolocation.clearWatch(geoWatchID);

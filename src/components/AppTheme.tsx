@@ -9,7 +9,8 @@ import HotlinesPage from './HotlinesPage';
 import HomePage from './HomePage';
 import CommandsPage from './CommandsPage';
 import CommandDetailsPage from '../containers/CommandDetailsPage';
-import LeftMenuIcon from './LeftMenuIcon';
+import HospitalFavoritesListPage from '../containers/HospitalFavoritesListPage';
+import LeftMenuIcon from '../containers/LeftMenuIcon';
 import { Route } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -24,7 +25,7 @@ import {withPageInfo} from './RoutePage';
 const muiTheme = getMuiTheme({
   palette: {
     
-    textColor: '#FFFFFF',
+    textColor: '#000000',
     primary1Color: '#475976',
     primary2Color: '#1b4583',
     primary3Color: '#1b4583'
@@ -45,6 +46,7 @@ export interface AppPageInterface {
 
 export interface Props {
   setPageTitle(title:string): void;
+  toggleDrawer: () => void;
   history: any;
 }
 
@@ -100,9 +102,22 @@ class App extends React.Component<Props, State>{
   }
 
   handleTitleClick = (event) => {
-    const {history} = this.props;
+    const {history,toggleDrawer} = this.props;
     const {titlePath} = this.state;
-    history.push(titlePath);
+
+    const isHomePage = (path: string) => {
+      const  matchList = ['/','/navy','/army','/air-force'];
+      if(matchList.indexOf(path) > -1){
+        return true;
+      }
+      return false;
+    }
+    console.log(this.props.history.location.pathname);
+    if(!titlePath || isHomePage(this.props.history.location.pathname)){
+      toggleDrawer();
+    } else {
+      history.push(titlePath);
+    }
   }
 
   hasScreenChanged = () => {
@@ -146,6 +161,7 @@ class App extends React.Component<Props, State>{
   render(){
 
     const childProps = {appPage: this.getAppPageObject()};
+
     return <MuiThemeProvider muiTheme={muiTheme}>
             <div>
               <AppBar  leftIcon={this.state.leftIcon} onTitleClick={this.handleTitleClick} />
@@ -155,6 +171,9 @@ class App extends React.Component<Props, State>{
                 <Route exact path="/hospitals" render={withPageInfo(CommandsPage,{...childProps,leftIcon: <BackButton path="/" />})} />
                 <Route exact path="/hospitals/:id" render={withPageInfo(CommandDetailsPage,{...childProps,titlePath: '/hospitals',leftIcon: <BackButton path="/hospitals" />})} />
                 <Route exact path="/hotlines" render={withPageInfo(HotlinesPage,{...childProps,leftIcon: <BackButton path="/" />})} />
+
+                <Route exact path="/favorites" render={withPageInfo(HospitalFavoritesListPage,{...childProps,leftIcon: <BackButton path="/" />})} />
+                <Route exact path="/favorites/:id" render={withPageInfo(CommandDetailsPage,{...childProps,titlePath: "/favorites", leftIcon: <BackButton path="/favorites" />})} />
 
                 <Route path="/army" render={withPageInfo(SiteArmy,childProps)} />
                 <Route path="/navy" render={withPageInfo(SiteNavy,childProps)} />

@@ -31,6 +31,7 @@ export default class CommandItem extends React.Component<Props, State>{
             onTouchTap={this.handleItemClick} 
             leftAvatar={<Avatar src={hospital.icon} />} 
             primaryText={hospital.title} 
+      
             secondaryText={distanceString}
             />
   }

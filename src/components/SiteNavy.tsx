@@ -5,6 +5,7 @@ import FacebookPage from './FaceBookPage';
 import TwitterPage from './TwitterPage';
 import { Route } from 'react-router-dom';
 import {NavyInfo} from '../res/data/services';
+import ResourcesPage from './ResourcesPage';
 import HomePage from '../containers/ServiceHomePage';
 import LeadershipDetailsPage from '../containers/LeadershipDetailsPage';
 import {AssetsInterface} from './ServiceHomePage';
@@ -46,6 +47,7 @@ export default class SiteNavy extends React.Component<Props, State>{
     const childProps = {assets,service: NavyInfo,appPage, titlePath: '/navy'};
     return <div>
               <Route exact path={match.url} render={withServicesInfo(HomePage,childProps)} />
+              <Route exact path={match.url + "/resources"} render={withServicesInfo(ResourcesPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />
               <Route exact path={match.url + "/facebook"} render={withServicesInfo(FacebookPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />
               <Route exact path={match.url + "/twitter"} render={withServicesInfo(TwitterPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />
               <Route exact path={match.url + "/leaders"} render={withServicesInfo(LeadershipPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />

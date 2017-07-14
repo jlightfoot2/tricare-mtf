@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {AppPageInterface} from './AppTheme';
 import LeadershipPage from './ServiceLeadersPage';
+import ResourcesPage from './ResourcesPage';
 import LeadershipDetailsPage from '../containers/LeadershipDetailsPage';
 import HomePage from '../containers/ServiceHomePage';
 import { Route } from 'react-router-dom';
@@ -45,6 +46,7 @@ export default class SiteAirFoce extends React.Component<Props, State>{
     const childProps = {assets,service: AirForceInfo,appPage, titlePath: '/air-force'};
     return <div>
               <Route exact path={match.url} render={withServicesInfo(HomePage,childProps)} />
+              <Route exact path={match.url + "/resources"} render={withServicesInfo(ResourcesPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />
               <Route exact path={match.url + "/facebook"} render={withServicesInfo(FacebookPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />
               <Route exact path={match.url + "/twitter"} render={withServicesInfo(TwitterPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />
               <Route exact path={match.url + "/leaders"} render={withServicesInfo(LeadershipPage,{...childProps,leftIcon: <BackButton path={match.url} />})} />

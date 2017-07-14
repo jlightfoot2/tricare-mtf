@@ -17,7 +17,9 @@ import {
   EULA_REJECTED,
   SET_GEO_SEARCH_RESULTS,
   DISMISS_911_WARNING,
-  SET_HOSPITAL_GEO_SORT_TEXT
+  SET_HOSPITAL_GEO_SORT_TEXT,
+  SET_DRAWER_OPEN,
+  SET_HOSPITALS_PAGE
 } from '../actions';
 import {combineReducers} from 'redux';
 import {arrayPushUnique,arrayRemove,copyArray} from './_helper';
@@ -27,7 +29,9 @@ const defaultFilters = {
     sortBy: "default",
     sortDir: "asc",
     filterText: "",
-    sortText: ""
+    sortText: "",
+    resultsMax: 10,
+    currentPage: 0
   }
 }
 
@@ -53,6 +57,9 @@ const defaultView = {
   flash: {
     message: '',
     open: false
+  },
+  drawer: {
+    open: false
   }
 }
 
@@ -73,6 +80,9 @@ const filters = (state = defaultFilters, action) => {
       break;
     case SET_HOSPITAL_GEO_SORT_TEXT:
       newHospitals = {...state.hospitals,sortText: action.text};
+      state = {...state,hospitals: newHospitals};
+    case SET_HOSPITALS_PAGE:
+      newHospitals = {...state.hospitals,currentPage: action.page};
       state = {...state,hospitals: newHospitals};
       break;
   }
@@ -143,6 +153,8 @@ const hotlineIds = (state = defaultHotlineIds, action) => {
 }
 
 
+
+
 const view = (state = defaultView, action) => {
   switch (action.type) {
     case WINDOW_RESIZE:
@@ -156,6 +168,9 @@ const view = (state = defaultView, action) => {
       break;
     case T2_APP_MESSAGE_CLEAR:
       state = {...state,flash: {message: '', open: false}};
+      break;
+    case SET_DRAWER_OPEN:
+      state = {...state,drawer: {open: action.open}};
       break;
   }
   return state;

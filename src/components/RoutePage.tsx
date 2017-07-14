@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import {ServiceInterface} from '../res/data/services';
-import LeftMenuIcon from './LeftMenuIcon';
+import LeftMenuIcon from '../containers/LeftMenuIcon';
 import Page from './Page';
 import {AssetsInterface} from './ServiceHomePage';
 /**
