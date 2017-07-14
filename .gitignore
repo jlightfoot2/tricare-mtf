@@ -1,6 +1,6 @@
 node_modules
-cordova/platforms
-cordova/plugins
+cordova/platforms/
+cordova/plugins/
 dist
 .DS_Store
 build/
