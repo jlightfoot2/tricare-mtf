@@ -73,3 +73,10 @@ export let appBarIconeStyle = {
   position: 'relative' as 'relative',
   left: -20
 }
+
+export let drawerContainerStyles = {
+  backgroundColor: PrimaryColor2,
+  color: 'white'
+}
+
+

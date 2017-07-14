@@ -15,6 +15,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import SnackbarGlobal from '../containers/SnackbarGlobal';
 import EulaDialog from '../containers/Eula';
+import BackButton from './BackButton';
 //import BackButton from './BackButton';
 //import Page from '../Containers/Page';
 import {withRouter} from 'react-router-dom';
@@ -23,7 +24,7 @@ import {withPageInfo} from './RoutePage';
 const muiTheme = getMuiTheme({
   palette: {
     
-    textColor: '#000000',
+    textColor: '#FFFFFF',
     primary1Color: '#475976',
     primary2Color: '#1b4583',
     primary3Color: '#1b4583'
@@ -151,9 +152,9 @@ class App extends React.Component<Props, State>{
               <div>
                 
                 <Route exact path="/" render={withPageInfo(HomePage,childProps)} />
-                <Route exact path="/hospitals" render={withPageInfo(CommandsPage,childProps)} />
-                <Route exact path="/commands/:id" render={withPageInfo(CommandDetailsPage,childProps)} />
-                <Route exact path="/hotlines" render={withPageInfo(HotlinesPage,childProps)} />
+                <Route exact path="/hospitals" render={withPageInfo(CommandsPage,{...childProps,leftIcon: <BackButton path="/" />})} />
+                <Route exact path="/hospitals/:id" render={withPageInfo(CommandDetailsPage,{...childProps,titlePath: '/hospitals',leftIcon: <BackButton path="/hospitals" />})} />
+                <Route exact path="/hotlines" render={withPageInfo(HotlinesPage,{...childProps,leftIcon: <BackButton path="/" />})} />
 
                 <Route path="/army" render={withPageInfo(SiteArmy,childProps)} />
                 <Route path="/navy" render={withPageInfo(SiteNavy,childProps)} />

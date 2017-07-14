@@ -16,7 +16,7 @@ const stateToProps = (state,ownProps) => {
 const dispatchToProps = (dispatch,ownProps) => {
   return {
     itemClick: (hospital: CommandInterface) => {
-       ownProps.history.push('/commands/' + hospital.id);
+       ownProps.history.push('/hospitals/' + hospital.id);
     },
     dismiss911: () => {
       dispatch(dismiss911Warning());
