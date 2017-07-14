@@ -9,8 +9,13 @@ import FavoriteIcon from 'material-ui/svg-icons/action/favorite';
 import PhoneIcon from 'material-ui/svg-icons/communication/phone';
 
 
+const tricareIconPath = require('../res/images/ui/tricare-online-icon.png');
+const relayIconPath = require('../res/images/ui/tricare-relayhealth-icon.png');
+const armyIconPath = require('../res/images/ui/tricare-army-icon.png');
+const navyIconPath = require('../res/images/ui/tricare-navy-icon.png');
+const airforceIconPath = require('../res/images/ui/tricare-airforce-icon.png');
 import { Link } from 'react-router-dom';
-import {drawerContainerStyles} from './commonStyles';
+import {drawerContainerStyles,drawerImageIconStyles,drawerLargeImageIconStyles} from './commonStyles';
 export interface Props {
 
 }
@@ -45,11 +50,21 @@ export default class LeftMenu extends React.Component<Props, State>{
           <MenuItem leftIcon={<HospitalIcon color={'white'} />} onTouchTap={this.handleClose} containerElement={<Link to="/hospitals" />} primaryText="Locations" />
           <MenuItem leftIcon={<PhoneIcon color={'white'} />} onTouchTap={this.handleClose} containerElement={<Link to="/hotlines" />} primaryText="DoD Hotlines" />
 
-          <MenuItem onTouchTap={this.handleClose} containerElement={<Link to="/tricare-online" />} primaryText="TRICARE Online" />
-          <MenuItem onTouchTap={this.handleClose} containerElement={<Link to="/relay-health" />} primaryText="RelayHealth" />
-          <MenuItem onTouchTap={this.handleClose} containerElement={<Link to="/army" />} primaryText="Army Medicine" />
-          <MenuItem onTouchTap={this.handleClose} containerElement={<Link to="/navy" />} primaryText="Navy Medicine" />
-          <MenuItem onTouchTap={this.handleClose} containerElement={<Link to="/air-force" />} primaryText="Air Force Medicine" />
+          <MenuItem insetChildren={true} onTouchTap={this.handleClose} containerElement={<Link to="/tricare-online" />} primaryText="TRICARE Online">
+            <img style={drawerImageIconStyles} src={tricareIconPath} />
+          </MenuItem>
+          <MenuItem insetChildren={true} onTouchTap={this.handleClose} containerElement={<Link to="/relay-health" />} primaryText="RelayHealth">
+            <img style={drawerLargeImageIconStyles} src={relayIconPath} />
+          </MenuItem>
+          <MenuItem insetChildren={true} onTouchTap={this.handleClose} containerElement={<Link to="/army" />} primaryText="Army Medicine">
+            <img style={drawerLargeImageIconStyles} src={armyIconPath} />
+          </MenuItem>
+          <MenuItem insetChildren={true} onTouchTap={this.handleClose} containerElement={<Link to="/navy" />} primaryText="Navy Medicine">
+            <img style={drawerLargeImageIconStyles} src={navyIconPath} />
+          </MenuItem>
+          <MenuItem insetChildren={true} onTouchTap={this.handleClose} containerElement={<Link to="/air-force" />} primaryText="Air Force Medicine">
+            <img style={drawerLargeImageIconStyles} src={airforceIconPath} />
+          </MenuItem>
           <MenuItem leftIcon={<FavoriteIcon color={'white'} />} onTouchTap={this.handleClose} containerElement={<Link to="/favorites" />} primaryText="Favorites" />
         </Drawer>
       </div>);

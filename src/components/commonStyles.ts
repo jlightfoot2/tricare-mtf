@@ -79,4 +79,19 @@ export let drawerContainerStyles = {
   color: 'white'
 }
 
+export let drawerImageIconStyles = {
+  position: 'absolute' as 'absolute', 
+  top: -24,
+  left: -9,
+  display: 'block',
+  float: 'left'
+}
+
+export let drawerLargeImageIconStyles = {
+  ...drawerImageIconStyles,
+  width: 60,
+  top: -8,
+  left: -2,
+}
+
 

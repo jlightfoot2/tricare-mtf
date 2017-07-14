@@ -2,7 +2,7 @@ import * as React from 'react';
 import AppBar from 'material-ui/AppBar';
 //import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import {appBarTitleStyle, appBarIconeStyle} from './commonStyles';
-const appIcon = require("../res/images/ui/app-icon-48.png")
+const appIcon = require("../res/images/ui/tricare-logo-trans.png")
 
 export interface Props {
   leftIcon: JSX.Element,
