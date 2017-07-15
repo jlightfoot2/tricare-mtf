@@ -3,7 +3,7 @@ import {CommandInterface} from '../res/data/commands';
 import Avatar from 'material-ui/Avatar';
 //import {listItemImage} from './commonStyles';
 import {ListItem} from 'material-ui/List';
-
+const placeHolderImg = require('../res/images/commands/placeholder.jpg');
 export interface Props {
   hospital: CommandInterface;
   itemClick(hospital: CommandInterface);
@@ -29,7 +29,7 @@ export default class CommandItem extends React.Component<Props, State>{
 
     return <ListItem 
             onTouchTap={this.handleItemClick} 
-            leftAvatar={<Avatar src={hospital.icon} />} 
+            leftAvatar={<Avatar src={hospital.icon || hospital.img || placeHolderImg} />} 
             primaryText={hospital.title} 
       
             secondaryText={distanceString}

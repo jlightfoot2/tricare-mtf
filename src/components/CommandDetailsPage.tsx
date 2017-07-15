@@ -60,11 +60,11 @@ export default class CommandDetails extends React.Component<Props, State>{
     const hasWebsite = hospital.website.length > 0;
  
     return <div style={whiteContainer}>
-              <div style={styles}>
+              {hospital.img && <div style={styles}>
                 <div style={{width: '90%',margin: '0px auto 0px auto'}}>
                   <img style={{width: '100%'}} src={hospital.img} />
                 </div>
-              </div>
+              </div>}
               <div style={{greyContainer}}>
                 <FavoriteCheckbox toggleFavorite={this.handleSetToggle()} checked={isFavorite} />
                 <div style={titleStyles as any}>{hospital.title}</div>
