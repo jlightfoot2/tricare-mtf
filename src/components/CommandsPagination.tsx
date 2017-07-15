@@ -1,8 +1,9 @@
 import * as React from 'react';
-//import IconButton from 'material-ui/IconButton';
-import FlatButton from 'material-ui/FlatButton';
-import ExpandLessIcon from 'material-ui/svg-icons/navigation/expand-less';
-import ExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
+import IconButton from 'material-ui/IconButton';
+import FirstPageIcon from 'material-ui/svg-icons/navigation/first-page';
+import LastPageIcon from 'material-ui/svg-icons/navigation/last-page';
+import NextPageIcon from 'material-ui/svg-icons/navigation/chevron-right';
+import PrevPageIcon from 'material-ui/svg-icons/navigation/chevron-left';
 export interface Props {
   setPage: (pageIdx: number) => void;
   page: number;
@@ -38,10 +39,18 @@ export default class CommandsPagination extends React.Component<Props, State>{
     const {page, lastPage} = this.props;
 
         return <div>
-           <FlatButton disabled={!(page > 0)} icon={<ExpandLessIcon />} label={'First'} onTouchTap={this.onShowFirst} />
-           <FlatButton disabled={!(page > 0)} icon={<ExpandLessIcon />} label={'Prev'} onTouchTap={this.onShowLess} />
-           <FlatButton disabled={!(page < lastPage - 1)} icon={<ExpandMoreIcon />} label={'Next'} onTouchTap={this.onShowMore} />
-           <FlatButton disabled={!(page < lastPage - 1)} icon={<ExpandMoreIcon />} label={'Last'} onTouchTap={this.onShowLast} />
+           <IconButton disabled={!(page > 0)} onTouchTap={this.onShowFirst}>
+             <FirstPageIcon />
+           </IconButton>
+           <IconButton disabled={!(page > 0)} onTouchTap={this.onShowLess}>
+             <PrevPageIcon />
+           </IconButton>
+           <IconButton disabled={!(page < lastPage - 1)} label={'Next'} onTouchTap={this.onShowMore}>
+             <NextPageIcon />
+           </IconButton>
+           <IconButton disabled={!(page < lastPage - 1)}  onTouchTap={this.onShowLast}>
+             <LastPageIcon />
+           </IconButton>
         </div>;
   }
 }
