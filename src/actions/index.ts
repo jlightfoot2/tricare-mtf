@@ -26,8 +26,9 @@ import {getHospitalSortFilter,getDrawerOpen,getHospitalPage,getHospitalsPageMax}
 
 export const hospitalNextPage = () => {
   return (dispatch,getState,extraArgs) => {
-    const page = getHospitalPage(getState());
-    if(page < 0){
+    const currState = getState();
+    const page = getHospitalPage(currState);
+    if(page < getHospitalsPageMax(currState)){
       dispatch(setHospitalPage(page + 1));
     }
   }
@@ -37,7 +38,7 @@ export const hospitalPrevPage = () => {
   return (dispatch,getState,extraArgs) => {
     const currState = getState();
     const page = getHospitalPage(currState);
-    if(page > getHospitalsPageMax(currState)){
+    if(page > 0){
       dispatch(setHospitalPage(page - 1));
     }
   }

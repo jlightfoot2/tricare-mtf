@@ -47,7 +47,6 @@ export default class LeftMenu extends React.Component<Props, State>{
         <IconButton onTouchTap={this.handleToggle}><MoreVertIcon color="white" /></IconButton>
         <Drawer
           docked={false}
-          width={300}
           open={this.props.open}
           onRequestChange={(open) => {
             this.props.setDrawerOpen(open);

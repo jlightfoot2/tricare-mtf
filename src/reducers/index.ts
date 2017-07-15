@@ -30,7 +30,7 @@ const defaultFilters = {
     sortDir: "asc",
     filterText: "",
     sortText: "",
-    resultsMax: 10,
+    resultsMax: 20,
     currentPage: 0
   }
 }

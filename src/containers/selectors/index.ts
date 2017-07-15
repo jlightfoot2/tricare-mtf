@@ -34,8 +34,11 @@ export const getHospitalsAdvanced = createSelector( //just searching titles for 
   (hospitals,user,sortFilter) => {
     const {latitude,longitude} = user;
 
-    const startIndx = 0;
-    const resultsLength = (sortFilter.currentPage + 1) * sortFilter.resultsMax;
+    // const startIndx = 0;
+    // const resultsLength = (sortFilter.currentPage + 1) * sortFilter.resultsMax;
+
+    const startIndx = sortFilter.currentPage * sortFilter.resultsMax;
+    const resultsLength = startIndx + sortFilter.resultsMax;
 
     let sortCb = alphaSort('title',sortFilter.sortDir);
     if(sortFilter.sortBy === 'current_location' || sortFilter.sortBy === 'zip_city_location'){
