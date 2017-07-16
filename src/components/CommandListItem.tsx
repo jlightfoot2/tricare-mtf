@@ -24,8 +24,11 @@ export default class CommandItem extends React.Component<Props, State>{
   }
   render(){
     const {hospital} = this.props;
-
-    const distanceString = hospital.distance > 0 ? hospital.distance + ' miles' : ''
+    const hasDistance = hospital.distance > 0;
+    let distanceString = '';
+    if(hasDistance){
+      distanceString = (hospital.distance > 2000 ? '2000+ ' : hospital.distance) + ' miles'; 
+    }
 
     return <ListItem 
             onTouchTap={this.handleItemClick} 
