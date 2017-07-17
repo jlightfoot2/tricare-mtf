@@ -18,11 +18,18 @@ export const SET_HOSPITAL_GEO_SORT_TEXT = 'T2.SET_HOSPITAL_GEO_SORT_TEXT';
 export const UNWATCH_CURRENT_LOCATION = 'T2.UNWATCH_CURRENT_LOCATION';
 export const SET_DRAWER_OPEN = 'T2.SET_DRAWER_OPEN';
 export const SET_HOSPITALS_PAGE = 'T2.SET_HOSPITALS_PAGE';
-
+export const CLEAR_USER_LOCATION = 'T2.CLEAR_USER_LOCATION';
+export const SET_USER_PERMISSION_LOCATION = 'T2.SET_USER_PERMISSION_LOCATION';
 
 import {search_city, search_zipcodes, get_results_array} from '../sqlite';
-import {getHospitalSortFilter,getDrawerOpen,getHospitalPage,getHospitalsPageMax} from '../containers/selectors'
+import {getDrawerOpen,getHospitalPage,getHospitalsPageMax,getPermissions} from '../containers/selectors'
 
+export const setPermissionUserLocation = (permissionGranted: boolean) => {
+  return {
+    type: SET_USER_PERMISSION_LOCATION,
+    granted: permissionGranted
+  }
+}
 
 export const hospitalNextPage = () => {
   return (dispatch,getState,extraArgs) => {
@@ -100,15 +107,43 @@ export const watchCurrentLocation = () => {
       window.navigator.geolocation.clearWatch(geoWatchID);
     }
     geoWatchID = window.navigator.geolocation.watchPosition((position) => {
-       const filterState = getHospitalSortFilter(getState());
-       console.log(filterState);
-       if(filterState.sortBy === 'current_location'){
+       const locationPermission = getPermissions(getState()).location;
+       if(locationPermission){
          dispatch(setUserLocation(position.coords.latitude,position.coords.longitude));
        }
-       
+    },(PositionError) => {
+        if(PositionError.code === PositionError.PERMISSION_DENIED){
+          const locationPermission = getPermissions(getState()).location;
+          if(locationPermission){ //user has given permission
+            dispatch(openLocationSettings());
+          }
+        }
+        if(PositionError.code === PositionError.POSITION_UNAVAILABLE){
+          alert('POSITION_UNAVAILABLE');
+        }
+        if(PositionError.code === PositionError.TIMEOUT){
+          alert('TIMEOUT');
+        }
     })
   }
 }
+
+export const openLocationSettings = () => {
+  return (dispatch,getState,extraArgs) => {
+    if (extraArgs.isCordova && extraArgs.nativeSettings) {
+          extraArgs.nativeSettings.open("location", function() {
+                  console.log('opened settings');
+            },
+            function () {
+                console.log('failed to open settings');
+            }
+          );
+    } else {
+        console.log('openNativeSettingsTest is not active!');
+    }
+  }
+}
+
 export const unWatchCurrentLocation = () => {
   if(geoWatchID){
     window.navigator.geolocation.clearWatch(geoWatchID);
@@ -198,6 +233,15 @@ export const sortHospitals = (sortBy: string, sortDir = 'asc') => {
 }
 
 export const searchHospitals = (text: string) => {
+  return (dispatch,getState,extraArgs) => {
+      //search change pagination so must reset page on
+      // any action which filters results
+      dispatch(setHospitalPage(0)); 
+      dispatch(searchHospitalText(text));
+  }
+}
+
+export const searchHospitalText= (text: string) => {
   return {
     type: FILTER_HOSPITALS,
     text
@@ -209,6 +253,12 @@ export const setUserLocation = (latitude: number, longitude: number) => {
     type: SET_USER_LOCATION,
     latitude,
     longitude
+  }
+}
+
+export const clearUserLocation = () => {
+  return {
+    type: CLEAR_USER_LOCATION
   }
 }
 

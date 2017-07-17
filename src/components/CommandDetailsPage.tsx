@@ -70,8 +70,12 @@ export default class CommandDetails extends React.Component<Props, State>{
                 <div style={titleStyles as any}>{hospital.title}</div>
                 
                 <List>
-                  <ListItem containerElement={<ExternalLink target="_system" absolutePath={navLink} />} leftIcon={<NavigationIcon color={PrimaryColor} />} primaryText={hospital.address} />
-                  <ListItem containerElement={<ExternalLink target="_system" absolutePath={phoneLink} />} leftIcon={<PhoneCallIcon color={PrimaryColor} />} primaryText={hospital.phone} />
+                  <ExternalLink target="_system" absolutePath={navLink}>
+                    <ListItem  leftIcon={<NavigationIcon color={PrimaryColor} />} primaryText={hospital.address} />
+                  </ExternalLink>  
+                  <ExternalLink target="_system" absolutePath={phoneLink}>
+                    <ListItem  leftIcon={<PhoneCallIcon color={PrimaryColor} />} primaryText={hospital.phone} />
+                  </ExternalLink>   
                 </List>
                 <div>
 

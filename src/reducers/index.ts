@@ -19,7 +19,9 @@ import {
   DISMISS_911_WARNING,
   SET_HOSPITAL_GEO_SORT_TEXT,
   SET_DRAWER_OPEN,
-  SET_HOSPITALS_PAGE
+  SET_HOSPITALS_PAGE,
+  CLEAR_USER_LOCATION,
+  SET_USER_PERMISSION_LOCATION
 } from '../actions';
 import {combineReducers} from 'redux';
 import {arrayPushUnique,arrayRemove,copyArray} from './_helper';
@@ -36,14 +38,17 @@ const defaultFilters = {
 }
 
 const defaultUser = {
-  latitude: 0,
-  longitude: 0,
+  latitude: null,
+  longitude: null,
   show911Warning: true,
   platform: 'unknown'
 }
 
 const defaultSettings = {
-  eulaAccepted: false
+  eulaAccepted: false,
+  permissions: {
+    location: false
+  }
 }
 
 const defaultView = {
@@ -81,6 +86,7 @@ const filters = (state = defaultFilters, action) => {
     case SET_HOSPITAL_GEO_SORT_TEXT:
       newHospitals = {...state.hospitals,sortText: action.text};
       state = {...state,hospitals: newHospitals};
+      break;
     case SET_HOSPITALS_PAGE:
       newHospitals = {...state.hospitals,currentPage: action.page};
       state = {...state,hospitals: newHospitals};
@@ -99,17 +105,29 @@ const searches = (state = defaultSearches, action) => {
   return state;
 }
 
-//Do no save
+//Do not save
 const user = (state = defaultUser, action) => {
   switch(action.type){
     case SET_USER_LOCATION:
       state = {...state,latitude: action.latitude, longitude: action.longitude}
+      break;
+    case CLEAR_USER_LOCATION:
+      state = {...state,latitude: null, longitude: null}
       break;
     case DISMISS_911_WARNING:
       state = {...state,show911Warning: false}
       break;
     case SET_USER_PLATFORM:
       state = {...state,platform: action.platform}
+      break;
+  }
+  return state;
+}
+
+const permissions = (state,action) => {
+  switch(action.type){
+    case SET_USER_PERMISSION_LOCATION:
+      state = {...state,location: action.granted}
       break;
   }
   return state;
@@ -124,6 +142,9 @@ const settings = (state = defaultSettings,action) => {
       break;
     case EULA_REJECTED:
       state = {...state, eulaAccepted: false};
+      break;
+    case SET_USER_PERMISSION_LOCATION:
+      state = {...state,permissions: permissions(state.permissions,action)}
       break;
   }
   return state;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {compose, createStore,applyMiddleware} from 'redux';
 import {persistStore, autoRehydrate} from 'redux-persist';
 import * as localForage from "localforage";
-import {getHospitalSortFilter} from './containers/selectors'
+import {getPermissions} from './containers/selectors'
 
 import thunk from 'redux-thunk';
 import * as ReactDOM from 'react-dom';
@@ -58,14 +58,22 @@ const render = (Component: any) => {
       console.log(store.getState()); // list entire state of app
   });
   store.dispatch(setUserPlatform(thunkArgs.platform));
+
+
+  setTimeout(() => {
+       if(getPermissions(store.getState()).location){
+         store.dispatch(watchCurrentLocation());
+       }
+     },1000);
+
   const cordovaPause = () => {
      store.dispatch(unWatchCurrentLocation());
   }
 
   const cordovaResume = () => {
 
-     const filterState = getHospitalSortFilter(store.getState());
-     if(filterState.sortBy === 'current_location'){
+     const locationPermission = getPermissions(store.getState()).location;
+     if(locationPermission){
        store.dispatch(watchCurrentLocation());
      }
   }

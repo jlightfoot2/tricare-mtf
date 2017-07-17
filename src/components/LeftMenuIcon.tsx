@@ -55,7 +55,7 @@ export default class LeftMenu extends React.Component<Props, State>{
         >
         <Menu>
           <MenuItem style={{color: 'white'}} leftIcon={<HomeIcon color={'white'} />} onTouchTap={this.handleClose} containerElement={<Link to="/" />} primaryText="Home" />
-          <MenuItem style={{color: 'white'}} leftIcon={<HospitalIcon color={'white'} />} onTouchTap={this.handleClose} containerElement={<Link to="/hospitals" />} primaryText="Locations" />
+          <MenuItem style={{color: 'white'}} leftIcon={<HospitalIcon color={'white'} />} onTouchTap={this.handleClose} containerElement={<Link to="/commands" />} primaryText="Locations" />
           <MenuItem style={{color: 'white'}} leftIcon={<PhoneIcon color={'white'} />} onTouchTap={this.handleClose} containerElement={<Link to="/hotlines" />} primaryText="DoD Hotlines" />
 
           <MenuItem style={{color: 'white'}} insetChildren={true} onTouchTap={this.handleClose} containerElement={<Link to="/tricare-online" />} primaryText="TRICARE Online">

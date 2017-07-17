@@ -168,8 +168,8 @@ class App extends React.Component<Props, State>{
               <div>
                 
                 <Route exact path="/" render={withPageInfo(HomePage,childProps)} />
-                <Route exact path="/hospitals" render={withPageInfo(CommandsPage,{...childProps,leftIcon: <BackButton path="/" />})} />
-                <Route exact path="/hospitals/:id" render={withPageInfo(CommandDetailsPage,{...childProps,titlePath: '/hospitals',leftIcon: <BackButton path="/hospitals" />})} />
+                <Route exact path="/commands" render={withPageInfo(CommandsPage,{...childProps,leftIcon: <BackButton path="/" />})} />
+                <Route exact path="/commands/:id" render={withPageInfo(CommandDetailsPage,{...childProps,titlePath: '/commands',leftIcon: <BackButton path="/commands" />})} />
                 <Route exact path="/hotlines" render={withPageInfo(HotlinesPage,{...childProps,leftIcon: <BackButton path="/" />})} />
 
                 <Route exact path="/favorites" render={withPageInfo(HospitalFavoritesListPage,{...childProps,leftIcon: <BackButton path="/" />})} />

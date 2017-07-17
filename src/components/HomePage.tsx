@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {AppPageInterface} from './AppTheme';
+import ExternalLink from './ExternalLink';
 import { Link } from 'react-router-dom';
 
 
@@ -55,11 +56,11 @@ export default class HomePage extends React.Component<Props, State>{
     return <div style={styles}>
               <div style={columnStyles}>
             
-                  <Link to={"/hospitals"}><img style={halfImageStyles} src={triLocationsImage} /></Link>
+                  <Link to={"/commands"}><img style={halfImageStyles} src={triLocationsImage} /></Link>
  
                   <Link to={"/hotlines"}><img style={halfImageStyles} src={triHotlineImage} /></Link>
 
-                  <Link to={"/tricare-online"}><img style={halfImageStyles} src={triOnlineImage} /></Link>
+                  <ExternalLink absolutePath={"https://www.tricare.mil"}><img style={halfImageStyles} src={triOnlineImage} /></ExternalLink>
            
               </div>
               <div style={columnStyles}>

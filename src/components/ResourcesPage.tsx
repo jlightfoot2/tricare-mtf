@@ -22,12 +22,12 @@ export interface State {
 }
 
 const makeLinkItem = (id,text,absoluteUrl) => {
-  return <ListItem 
+  return <ExternalLink absolutePath={absoluteUrl}><ListItem 
             key={id}
-            containerElement={<ExternalLink absolutePath={absoluteUrl} />} 
             primaryText={text} 
             rightIcon={<PhoneIcon />} 
           />
+          </ExternalLink>;
 }
 
 

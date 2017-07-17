@@ -12,6 +12,7 @@
     "dependencies": {
         "cordova-android": "^6.2.3",
         "cordova-ios": "^4.4.0",
+        "cordova-open-native-settings": "^1.4.1",
         "cordova-plugin-compat": "^1.1.0",
         "cordova-plugin-device": "^1.1.6",
         "cordova-plugin-geolocation": "^2.4.3",
@@ -27,7 +28,8 @@
             "cordova-plugin-device": {},
             "cordova-plugin-geolocation": {
                 "GEOLOCATION_USAGE_DESCRIPTION": " "
-            }
+            },
+            "cordova-open-native-settings": {}
         },
         "platforms": [
             "android",
