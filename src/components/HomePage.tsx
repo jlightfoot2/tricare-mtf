@@ -3,7 +3,7 @@ import {AppPageInterface} from './AppTheme';
 import ExternalLink from './ExternalLink';
 import { Link } from 'react-router-dom';
 
-
+const tricareBanner = require('../res/images/ui/tricare-banner.png');
 const triLocationsImage = require("../res/images/ui/tricare-home-locations.png");
 const triHotlineImage = require("../res/images/ui/tricare-home-hotlines.png");
 const triOnlineImage = require("../res/images/ui/tricare-home-tricare-online.png");
@@ -13,7 +13,7 @@ const navyMedicineImage = require("../res/images/ui/tricare-home-navy.png");
 const afMedicineImage = require("../res/images/ui/tricare-home-af.png");
 
 let styles = {
-  backgroundColor: '#1b4583',
+  backgroundColor: '#E0E0E0',
   margin: '0px auto 0px auto'
 };
 
@@ -39,6 +39,9 @@ export default class HomePage extends React.Component<Props, State>{
     const {appPage} = this.props;
     const maxWidth =  HomePage.maxWidth;
     return  (appPage.screen.width > maxWidth ? maxWidth : appPage.screen.width) * 0.95;
+  }
+  getMainButtonWidth = () => {
+    return this.getContentWidth();
   }
   render(){
     const contentWidth = this.getContentWidth();
@@ -72,7 +75,9 @@ export default class HomePage extends React.Component<Props, State>{
                   <Link to={"/air-force"}><img style={halfImageStyles} src={afMedicineImage} /></Link>
                
               </div>
- 
+                <div>
+                    <img style={{width: this.getMainButtonWidth()}} src={tricareBanner} />
+                </div>
     </div>;
   }
 }

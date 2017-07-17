@@ -60,11 +60,12 @@ const render = (Component: any) => {
   store.dispatch(setUserPlatform(thunkArgs.platform));
 
 
-  setTimeout(() => {
-       if(getPermissions(store.getState()).location){
-         store.dispatch(watchCurrentLocation());
-       }
-     },1000);
+  const locTo = setTimeout(() => {
+         if(getPermissions(store.getState()).location){
+           store.dispatch(watchCurrentLocation());
+         }
+         clearTimeout(locTo);
+       },5000);
 
   const cordovaPause = () => {
      store.dispatch(unWatchCurrentLocation());

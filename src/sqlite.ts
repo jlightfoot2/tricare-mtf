@@ -17,7 +17,7 @@ export const init = (db:any) => {
 export const search_city = (db:any,text: string, limit: number, cb: (error: any, rs:any) => void) => {
 
    db.transaction((tx) => {
-      tx.executeSql("SELECT rowid as id, * FROM Cities WHERE Name LIKE ? LIMIT ?",['%' + text + '%',limit],
+      tx.executeSql("SELECT rowid as id, * FROM Cities WHERE Name LIKE ? LIMIT ?",[text + '%',limit],
      (tx,rs) => {
           
           cb(null,rs);
@@ -41,7 +41,7 @@ export const get_results_array = (rows:any,maxResulst: number = 10) => {
 export const search_zipcodes = (db:any,text: string, limit: number,cb: (error: any, rs:any) => void) => {
 
    db.transaction((tx) => {
-      tx.executeSql("SELECT rowid as id, * FROM Zipcodes WHERE Zipcode LIKE ? LIMIT ?",['%' + text + '%',limit],
+      tx.executeSql("SELECT rowid as id, * FROM Zipcodes WHERE Zipcode LIKE ? LIMIT ?",[ text + '%',limit],
      (tx,rs) => {
           cb(null,rs)
       },

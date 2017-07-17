@@ -106,9 +106,12 @@ export const watchCurrentLocation = () => {
     if(geoWatchID){
       window.navigator.geolocation.clearWatch(geoWatchID);
     }
+    console.log('watchCurrentLocation 1');
     geoWatchID = window.navigator.geolocation.watchPosition((position) => {
        const locationPermission = getPermissions(getState()).location;
+       console.log('watchCurrentLocation 2');
        if(locationPermission){
+         console.log('watchCurrentLocation 3');
          dispatch(setUserLocation(position.coords.latitude,position.coords.longitude));
        }
     },(PositionError) => {

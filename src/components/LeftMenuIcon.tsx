@@ -8,7 +8,7 @@ import HomeIcon from 'material-ui/svg-icons/action/home';
 import HospitalIcon from 'material-ui/svg-icons/maps/local-hospital';
 import FavoriteIcon from 'material-ui/svg-icons/action/favorite';
 import PhoneIcon from 'material-ui/svg-icons/communication/phone';
-
+import ExternalLink from './ExternalLink';
 
 const tricareIconPath = require('../res/images/ui/tricare-online-icon.png');
 const relayIconPath = require('../res/images/ui/tricare-relayhealth-icon.png');
@@ -57,13 +57,16 @@ export default class LeftMenu extends React.Component<Props, State>{
           <MenuItem style={{color: 'white'}} leftIcon={<HomeIcon color={'white'} />} onTouchTap={this.handleClose} containerElement={<Link to="/" />} primaryText="Home" />
           <MenuItem style={{color: 'white'}} leftIcon={<HospitalIcon color={'white'} />} onTouchTap={this.handleClose} containerElement={<Link to="/commands" />} primaryText="Locations" />
           <MenuItem style={{color: 'white'}} leftIcon={<PhoneIcon color={'white'} />} onTouchTap={this.handleClose} containerElement={<Link to="/hotlines" />} primaryText="DoD Hotlines" />
-
-          <MenuItem style={{color: 'white'}} insetChildren={true} onTouchTap={this.handleClose} containerElement={<Link to="/tricare-online" />} primaryText="TRICARE Online">
-            <img style={drawerImageIconStyles} src={tricareIconPath} />
-          </MenuItem>
-          <MenuItem style={{color: 'white'}} insetChildren={true} onTouchTap={this.handleClose} containerElement={<Link to="/relay-health" />} primaryText="RelayHealth">
-            <img style={drawerLargeImageIconStyles} src={relayIconPath} />
-          </MenuItem>
+          <ExternalLink absolutePath={'https://www.tricare.mil'}>
+            <MenuItem style={{color: 'white'}} insetChildren={true} onTouchTap={this.handleClose} primaryText="TRICARE Online">
+              <img style={drawerImageIconStyles} src={tricareIconPath} />
+            </MenuItem>
+          </ExternalLink>
+          <ExternalLink absolutePath={'https://app.relayhealth.com/'}>
+            <MenuItem style={{color: 'white'}} insetChildren={true} onTouchTap={this.handleClose} primaryText="RelayHealth">
+              <img style={drawerLargeImageIconStyles} src={relayIconPath} />
+            </MenuItem>
+          </ExternalLink>
           <MenuItem style={{color: 'white'}} insetChildren={true} onTouchTap={this.handleClose} containerElement={<Link to="/army" />} primaryText="Army Medicine">
             <img style={drawerLargeImageIconStyles} src={armyIconPath} />
           </MenuItem>
