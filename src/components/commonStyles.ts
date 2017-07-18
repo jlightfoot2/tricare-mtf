@@ -32,6 +32,27 @@ export let titleStyles1 = {
   fontSize: 18
 }
 
+export let subtitleStyles1 = {
+  color: PrimaryColor2,
+  fontWeight: 700 as 700,
+  padding: '0px 15px 0px 15px',
+  fontSize: 14
+}
+
+export let titleStyles3 = {
+  color: PrimaryColor,
+  fontWeight: 900 as 900,
+  padding: '5px 15px 5px 15px',
+  fontSize: 18
+}
+
+export let subtitleStyles3 = {
+  color: PrimaryColor2,
+  fontWeight: 700 as 700,
+  padding: '5px 15px 5px 15px',
+  fontSize: 14
+}
+
 export let titleStyles2 = {
   color: PrimaryColor2,
   fontWeight: 900 as any,
