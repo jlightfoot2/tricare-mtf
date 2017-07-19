@@ -25,13 +25,18 @@ export default class TwitterPage extends React.Component<Props, State>{
   }
 
   componentDidMount(){
-     (window as any).twttr.widgets.load()
+    this.handleLoadTwitter();
   }
 
   componentWillReceiveProps(){
-     (window as any).twttr.widgets.load()
+    this.handleLoadTwitter();
   }
-
+  
+  handleLoadTwitter = () => {
+    if(typeof (window as any).twttr.widgets !== 'undefined'){
+       (window as any).twttr.widgets.load()
+    }
+  }
   render(){
    const {appPage,service} = this.props;
    const maxWidth = 800;

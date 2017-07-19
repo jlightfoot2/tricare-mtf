@@ -39,7 +39,7 @@ export const makeServie = (id:number, title: string,facebook: string, twitter: s
   }
 }
 
-const triCareUrl = "https://google.com"; //TODO get correct url
+const triCareUrl = "https://www.tricareonline.com"; 
 
 export const ArmyInfo = makeServie(
   1, 
@@ -72,7 +72,7 @@ export const NavyInfo = makeServie(
       makeServieResource(2,'Medline Plus','https://medlineplus.gov'),
       makeServieResource(3,'Military OneSource','http://www.militaryonesource.mil/service/navy'),
       makeServieResource(4,'Veteran\'s Health Library','http://www.veteranshealthlibrary.org'),
-      makeServieResource(5,'Navy and Marine Corps Public Health Center','https://google.com'),
+      makeServieResource(5,'Navy and Marine Corps Public Health Center','http://www.med.navy.mil/sites/nmcphc/Pages/Home.aspx'),
       makeServieResource(6,'TRICARE',triCareUrl)
     ]
 );

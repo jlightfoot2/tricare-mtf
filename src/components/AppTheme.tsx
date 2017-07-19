@@ -102,6 +102,8 @@ class App extends React.Component<Props, State>{
   }
 
   handleTitleClick = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     const {history,toggleDrawer} = this.props;
     const {titlePath} = this.state;
 
