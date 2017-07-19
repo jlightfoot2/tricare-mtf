@@ -21,6 +21,11 @@ export const SET_HOSPITALS_PAGE = 'T2.SET_HOSPITALS_PAGE';
 export const CLEAR_USER_LOCATION = 'T2.CLEAR_USER_LOCATION';
 export const SET_USER_PERMISSION_LOCATION = 'T2.SET_USER_PERMISSION_LOCATION';
 
+export const SORT_ALPHABETICAL = 'default';
+export const SORT_DEFAULT = 'default';
+export const SORT_LOCATION = 'current_location';
+export const SORT_CITY_ZIP = 'zip_city_location';
+
 import {search_city, search_zipcodes, get_results_array} from '../sqlite';
 import {getDrawerOpen,getHospitalPage,getHospitalsPageMax,getPermissions} from '../containers/selectors'
 

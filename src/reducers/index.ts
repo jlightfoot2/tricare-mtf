@@ -21,7 +21,8 @@ import {
   SET_DRAWER_OPEN,
   SET_HOSPITALS_PAGE,
   CLEAR_USER_LOCATION,
-  SET_USER_PERMISSION_LOCATION
+  SET_USER_PERMISSION_LOCATION,
+  SORT_DEFAULT
 } from '../actions';
 import {combineReducers} from 'redux';
 import {arrayPushUnique,arrayRemove,copyArray} from './_helper';
@@ -89,6 +90,10 @@ const filters = (state = defaultFilters, action) => {
       break;
     case SET_HOSPITALS_PAGE:
       newHospitals = {...state.hospitals,currentPage: action.page};
+      state = {...state,hospitals: newHospitals};
+      break;
+    case CLEAR_USER_LOCATION:
+      newHospitals = {...state.hospitals,sortBy: SORT_DEFAULT};
       state = {...state,hospitals: newHospitals};
       break;
   }
