@@ -1,7 +1,7 @@
 {
     "name": "tricare-mtf",
     "displayName": "MHS",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Military Health System",
     "main": "index.js",
     "scripts": {

@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version='1.0.1' encoding='utf-8'?>
 <widget id="org.tee2.tricaremedicine" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>MHS</name>
     <description>
@@ -24,16 +24,18 @@
     <icon src="res/icon/icon-72-2x.png" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <splash density="port-hdpi" src="res/screen/android/screen-hdpi-portrait-narrow.png" />
-        <splash density="port-ldpi" src="res/screen/android/screen-hdpi-portrait-narrow.png" />
-        <splash density="port-mdpi" src="res/screen/android/screen-hdpi-portrait-narrow.png" />
-        <splash density="port-xhdpi" src="res/screen/android/screen-hdpi-portrait-narrow.png" />
+        <splash density="port-hdpi" src="res/screen/android/screen-hdpi-portrait.png" />
+        <splash density="port-ldpi" src="res/screen/android/screen-hdpi-portrait.png" />
+        <splash density="port-mdpi" src="res/screen/android/screen-hdpi-portrait.png" />
+        <splash density="port-xhdpi" src="res/screen/android/screen-hdpi-portrait.png" />
     </platform>
     <platform name="ios">
         <splash src="res/screen/ios/Default@2x~universal~anyany.png" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <engine name="android" spec="^6.2.3" />
+    <engine name="ios" spec="^4.4.0" />
     <plugin name="cordova-open-native-settings" spec="^1.4.1" />
     <plugin name="cordova-plugin-device" spec="^1.1.6" />
     <plugin name="cordova-plugin-geolocation" spec="^2.4.3">
@@ -44,6 +46,4 @@
     <plugin name="cordova-plugin-statusbar" spec="^2.2.3" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.2" />
     <plugin name="cordova-sqlite-storage" spec="^2.0.4" />
-    <engine name="android" spec="^6.2.3" />
-    <engine name="ios" spec="^4.4.0" />
 </widget>
