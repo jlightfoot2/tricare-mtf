@@ -9,7 +9,7 @@ import {AssetsInterface} from './ServiceHomePage';
 import LeadershipDetailsPage from '../containers/LeadershipDetailsPage';
 import BackButton from './BackButton';
 import FacebookPage from './FaceBookPage';
-import TwitterPage from './TwitterPage';
+import TwitterPage from './ServiceTwitterPage';
 import {withServicesInfo} from './RoutePage';
 const ArmyLeadershipButton = require('../res/images/ui/tricare-army-leadership.png');
 const ArmyResourcesButton = require('../res/images/ui/tricare-army-resources.png');

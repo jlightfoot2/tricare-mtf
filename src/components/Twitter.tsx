@@ -2,11 +2,10 @@
 import * as React from 'react';
 
 import {AppPageInterface} from './AppTheme';
-import {ServiceInterface} from '../res/data/services'
+
 export interface Props {
   appPage: AppPageInterface;
   link: string;
-  service: ServiceInterface;
 }
 
 export interface State {
@@ -20,9 +19,6 @@ export default class TwitterPage extends React.Component<Props, State>{
       showFeed: false
     }
   }
-  componentWillMount(){
-    this.props.appPage.setPageTitle("Twitter");
-  }
 
   componentDidMount(){
     this.handleLoadTwitter();
@@ -31,14 +27,15 @@ export default class TwitterPage extends React.Component<Props, State>{
   componentWillReceiveProps(){
     this.handleLoadTwitter();
   }
-  
+
   handleLoadTwitter = () => {
     if(typeof (window as any).twttr.widgets !== 'undefined'){
        (window as any).twttr.widgets.load()
     }
   }
+
   render(){
-   const {appPage,service} = this.props;
+   const {appPage,link} = this.props;
    const maxWidth = 800;
    const width = appPage.screen.width > maxWidth ? maxWidth : appPage.screen.width;
    const style = {
@@ -47,7 +44,7 @@ export default class TwitterPage extends React.Component<Props, State>{
    };
     return <div>
               <div style={style}>
-              <a style={{display: 'none'}} className="twitter-timeline" href={service.twitter}>Tweets by ArmyMedicine</a>
+               <a style={{display: 'none'}} className="twitter-timeline" href={link}>Tweets by ArmyMedicine</a>
               </div>
           </div>;
   }

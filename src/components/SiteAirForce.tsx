@@ -10,7 +10,7 @@ import {AssetsInterface} from './ServiceHomePage';
 import BackButton from './BackButton';
 import {withServicesInfo} from './RoutePage';
 import FacebookPage from './FaceBookPage';
-import TwitterPage from './TwitterPage';
+import TwitterPage from './ServiceTwitterPage';
 const AfLeadershipButton = require('../res/images/ui/tricare-af-leadership.png');
 const AfResourcesButton = require('../res/images/ui/tricare-af-resources.png');
 const AfHeader = require('../res/images/ui/tricare-af-home-header.png');

@@ -17,6 +17,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import SnackbarGlobal from '../containers/SnackbarGlobal';
 import EulaDialog from '../containers/Eula';
 import BackButton from './BackButton';
+import TwitterPage from '../containers/CommandTwitterPage';
 //import BackButton from './BackButton';
 //import Page from '../Containers/Page';
 import {withRouter} from 'react-router-dom';
@@ -173,7 +174,7 @@ class App extends React.Component<Props, State>{
                 <Route exact path="/commands" render={withPageInfo(CommandsPage,{...childProps,leftIcon: <BackButton path="/" />})} />
                 <Route exact path="/commands/:id" render={withPageInfo(CommandDetailsPage,{...childProps,titlePath: '/commands',leftIcon: <BackButton path="/commands" />})} />
                 <Route exact path="/hotlines" render={withPageInfo(HotlinesPage,{...childProps,leftIcon: <BackButton path="/" />})} />
-
+                <Route exact path="/commands/:id/twitter" render={withPageInfo(TwitterPage,{...childProps, leftIcon: <BackButton path="/" />})} />
                 <Route exact path="/favorites" render={withPageInfo(HospitalFavoritesListPage,{...childProps,leftIcon: <BackButton path="/" />})} />
                 <Route exact path="/favorites/:id" render={withPageInfo(CommandDetailsPage,{...childProps,titlePath: "/favorites", leftIcon: <BackButton path="/favorites" />})} />
 

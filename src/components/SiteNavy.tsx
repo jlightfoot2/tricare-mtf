@@ -2,7 +2,7 @@ import * as React from 'react';
 import {AppPageInterface} from './AppTheme';
 import LeadershipPage from './ServiceLeadersPage';
 import FacebookPage from './FaceBookPage';
-import TwitterPage from './TwitterPage';
+import TwitterPage from './ServiceTwitterPage';
 import { Route } from 'react-router-dom';
 import {NavyInfo} from '../res/data/services';
 import ResourcesPage from './ResourcesPage';
