@@ -18,6 +18,9 @@ const dispatchToProps = (dispatch,ownProps) => {
     },
     toggleDrawer: () =>{
       dispatch(toggleMainDrawer());
+    },
+    navigate: (path) => {
+      ownProps.history.push(path);
     }
   }
 }

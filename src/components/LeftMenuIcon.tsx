@@ -15,12 +15,13 @@ const relayIconPath = require('../res/images/ui/tricare-relayhealth-icon.png');
 const armyIconPath = require('../res/images/ui/tricare-army-icon.png');
 const navyIconPath = require('../res/images/ui/tricare-navy-icon.png');
 const airforceIconPath = require('../res/images/ui/tricare-airforce-icon.png');
-import { Link } from 'react-router-dom';
+
 import {drawerContainerStyles,drawerImageIconStyles,drawerLargeImageIconStyles} from './commonStyles';
 export interface Props {
   open: boolean;
   setDrawerOpen: (open: boolean) => void;
   toggleDrawer: () => void;
+  navigate: (path: string) => void;
 }
 
 export interface State {
@@ -38,10 +39,23 @@ export default class LeftMenu extends React.Component<Props, State>{
 
       toggleDrawer();
     }
-  handleClose = () => {
+  handleClose = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     const {setDrawerOpen} = this.props;
     setDrawerOpen(false);
   };
+
+  handleNavigation = (path) => {
+    const {navigate,setDrawerOpen} = this.props;
+    return (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      navigate(path);
+      setDrawerOpen(false);
+    }
+  };
+
   render(){
      return (<div>
         <IconButton onTouchTap={this.handleToggle}><MoreVertIcon color="white" /></IconButton>
@@ -54,9 +68,9 @@ export default class LeftMenu extends React.Component<Props, State>{
           containerStyle={drawerContainerStyles}
         >
         <Menu>
-          <MenuItem style={{color: 'white'}} leftIcon={<HomeIcon color={'white'} />} onTouchTap={this.handleClose} containerElement={<Link to="/" />} primaryText="Home" />
-          <MenuItem style={{color: 'white'}} leftIcon={<HospitalIcon color={'white'} />} onTouchTap={this.handleClose} containerElement={<Link to="/commands" />} primaryText="Locations" />
-          <MenuItem style={{color: 'white'}} leftIcon={<PhoneIcon color={'white'} />} onTouchTap={this.handleClose} containerElement={<Link to="/hotlines" />} primaryText="DoD Hotlines" />
+          <MenuItem style={{color: 'white'}} leftIcon={<HomeIcon color={'white'} />} onTouchTap={this.handleNavigation("/")}  primaryText="Home" />
+          <MenuItem style={{color: 'white'}} leftIcon={<HospitalIcon color={'white'} />} onTouchTap={this.handleNavigation("/commands")} primaryText="Locations" />
+          <MenuItem style={{color: 'white'}} leftIcon={<PhoneIcon color={'white'} />} onTouchTap={this.handleNavigation("/hotlines")}  primaryText="DoD Hotlines" />
           <ExternalLink absolutePath={'https://www.tricare.mil'}>
             <MenuItem style={{color: 'white'}} insetChildren={true} onTouchTap={this.handleClose} primaryText="TRICARE Online">
               <img style={drawerImageIconStyles} src={tricareIconPath} />
@@ -67,16 +81,16 @@ export default class LeftMenu extends React.Component<Props, State>{
               <img style={drawerLargeImageIconStyles} src={relayIconPath} />
             </MenuItem>
           </ExternalLink>
-          <MenuItem style={{color: 'white'}} insetChildren={true} onTouchTap={this.handleClose} containerElement={<Link to="/army" />} primaryText="Army Medicine">
+          <MenuItem style={{color: 'white'}} insetChildren={true} onTouchTap={this.handleNavigation("/army")} primaryText="Army Medicine">
             <img style={drawerLargeImageIconStyles} src={armyIconPath} />
           </MenuItem>
-          <MenuItem style={{color: 'white'}} insetChildren={true} onTouchTap={this.handleClose} containerElement={<Link to="/navy" />} primaryText="Navy Medicine">
+          <MenuItem style={{color: 'white'}} insetChildren={true} onTouchTap={this.handleNavigation("/navy")}  primaryText="Navy Medicine">
             <img style={drawerLargeImageIconStyles} src={navyIconPath} />
           </MenuItem>
-          <MenuItem  style={{color: 'white'}} insetChildren={true} onTouchTap={this.handleClose} containerElement={<Link to="/air-force" />} primaryText="Air Force Medicine">
+          <MenuItem  style={{color: 'white'}} insetChildren={true} onTouchTap={this.handleNavigation("/air-force")} primaryText="Air Force Medicine">
             <img style={drawerLargeImageIconStyles} src={airforceIconPath} />
           </MenuItem>
-          <MenuItem style={{color: 'white'}} leftIcon={<FavoriteIcon color={'white'} />} onTouchTap={this.handleClose} containerElement={<Link to="/favorites" />} primaryText="Favorites" />
+          <MenuItem style={{color: 'white'}} leftIcon={<FavoriteIcon color={'white'} />} onTouchTap={this.handleNavigation("/favorites")} primaryText="Favorites" />
           <MenuItem style={{color: 'grey'}}  primaryText="Verson 1.0.1" />
         </Menu>
         </Drawer>
