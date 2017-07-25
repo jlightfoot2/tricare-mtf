@@ -91,7 +91,7 @@ export default class LeftMenu extends React.Component<Props, State>{
             <img style={drawerLargeImageIconStyles} src={airforceIconPath} />
           </MenuItem>
           <MenuItem style={{color: 'white'}} leftIcon={<FavoriteIcon color={'white'} />} onTouchTap={this.handleNavigation("/favorites")} primaryText="Favorites" />
-          <MenuItem style={{color: 'grey'}}  primaryText="Verson 1.0.1" />
+          <MenuItem style={{color: 'grey'}}  primaryText="Verson 1.0.2" />
         </Menu>
         </Drawer>
       </div>);
