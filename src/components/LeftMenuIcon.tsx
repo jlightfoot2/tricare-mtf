@@ -40,8 +40,6 @@ export default class LeftMenu extends React.Component<Props, State>{
       toggleDrawer();
     }
   handleClose = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
     const {setDrawerOpen} = this.props;
     setDrawerOpen(false);
   };
