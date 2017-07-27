@@ -6,10 +6,11 @@ import {isHospitalFavorite} from './_helper';
 import {addHospitalToFavorites,removeHospitalFromFavorites,sendMessage} from '../actions'
 
 const getNavLink = (platform,hospital) => {
-    if(platform === 'ios'){
-      return `maps:?g=${hospital.latitude},${hospital.longitude}`
-    }
-    return `geo:${hospital.latitude},${hospital.longitude}`
+    // if(platform === 'ios'){
+    //   return `maps:?q=${hospital.latitude},${hospital.longitude}`;
+    // }
+    return `https://www.google.com/maps/search/?api=1&query=${hospital.latitude},${hospital.longitude}`
+    //return `geo:${hospital.latitude},${hospital.longitude}`;
 }
 
 const stateToProps = (state,ownProps) => {
