@@ -1,6 +1,6 @@
 {
   "name": "tricare-mtf",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Tricare MHS",
   "main": "index.ts",
   "author": "T2",
